@@ -1,0 +1,26 @@
+---
+- name: Check if Homebrew is already installed
+  stat:
+    path: /opt/homebrew/bin/brew
+  register: b
+
+- name: Install Homebrew packages
+  homebrew:
+    name: "{{ packages }}"
+  register: result
+  until: result is successful
+  when: b.stat.exists
+
+- name: Install homebrew cask packages
+  homebrew_cask:
+    name: "{{ cask_packages }}"
+  register: result
+  until: result is successful
+  when: b.stat.exists
+
+- name: Upgrade Homebrew packages
+  homebrew:
+    upgrade_all: "{{ packages }}"
+  register: result
+  until: result is successful
+  when: b.stat.exists

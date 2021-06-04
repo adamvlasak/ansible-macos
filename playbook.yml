@@ -1,0 +1,9 @@
+---
+- name: setup mac
+  vars_files: vars.yml
+  hosts: all
+  roles:
+    - homebrew
+    - base
+    - user
+    - vim

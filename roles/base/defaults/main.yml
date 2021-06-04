@@ -1,0 +1,47 @@
+---
+packages:
+  - coreutils
+  - curl
+  - dos2unix
+  - ffmpeg
+  - findutils
+  - flac
+  - fzf
+  - gawk
+  - git
+  - go
+  - grep
+  - jq
+  - lame
+  - lua
+  - make
+  - midnight-commander
+  - neovim
+  - node
+  - sox
+  - sqlite
+  - tmux
+  - tree
+  - wget
+  - xz
+  - zsh
+  - zsh-completions
+
+cask_packages:
+  - appcleaner
+  - brave-browser
+  - calibre
+  - discord
+  - dotnet-sdk
+  - firefox
+  - font-fira-code
+  - google-chrome
+  - iterm2
+  - keepingyouawake
+  - megasync
+  - obs
+  - suspicious-package
+  - vcv-rack
+  - visual-studio-code
+  - vlc
+  - yt-music
