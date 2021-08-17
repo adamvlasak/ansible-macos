@@ -17,8 +17,6 @@ scrub all reassemble tcp
 
 # Filtering
 
-table <bruteforce> persist
-
 # Antispoof
 antispoof log quick for { lo0 en0 en2 }
 
@@ -32,8 +30,8 @@ block in log quick from no-route to any
 block all
 
 # Block bad IPs
-table <ipblocklist> persist file "/etc/pf.drop.txt" file "/etc/pf.edrop.txt"
-block return out log quick from any to <ipblocklist>
+table <badguys> persist file "/etc/pf.drop.txt" file "/etc/pf.edrop.txt"
+block return out log quick from any to <badguys>
 
 # Allow critical system traffic
 pass in quick inet proto udp from any port 67 to any port 68

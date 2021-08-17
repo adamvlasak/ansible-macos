@@ -7,7 +7,10 @@
     group: wheel
     mode: 0644
   notify:
+    - flush all
     - restart fw
+  tags:
+    - pf
 
 - name: provision anchor /etc/pf.anchors/pf.rules
   template:
@@ -17,25 +20,36 @@
     group: wheel
     mode: 0644
   notify:
+    - flush all
     - restart fw
+  tags:
+    - pf
 
 - name: download DROP from spamhaus.org
   get_url:
     url: https://www.spamhaus.org/drop/drop.txt
     dest: /etc/pf.drop.txt
+    force: yes
     owner: root
     group: wheel
   notify:
+    - flush all
     - restart fw
+  tags:
+    - pf
 
 - name: download EDROP from spamhaus.org
   get_url:
     url: https://www.spamhaus.org/drop/edrop.txt
     dest: /etc/pf.edrop.txt
+    force: yes
     owner: root
     group: wheel
   notify:
+    - flush all
     - restart fw
+  tags:
+    - pf
 
 - name: replace ; with #
   replace:
@@ -43,7 +57,10 @@
     regexp: "; "
     replace: "# "
   notify:
+    - flush all
     - restart fw
+  tags:
+    - pf
 
 - name: replace ; with #
   replace:
@@ -51,7 +68,10 @@
     regexp: "; "
     replace: "# "
   notify:
+    - flush all
     - restart fw
+  tags:
+    - pf
 
 - name: setup launchctl plist
   template:
@@ -60,3 +80,5 @@
     owner: root
     group: wheel
     mode: 0644
+  tags:
+    - pf
