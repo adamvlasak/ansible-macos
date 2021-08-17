@@ -18,7 +18,7 @@ scrub all reassemble tcp
 # Filtering
 
 # Antispoof
-antispoof quick for { {{ ifaces }} }
+antispoof quick for { {{ antispoof_ifaces }} }
 
 # Activate spoofing protection for all interfaces
 block in quick from urpf-failed

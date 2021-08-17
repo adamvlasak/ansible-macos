@@ -1,6 +1,6 @@
 ---
 gateway: 192.168.10.1
 dns: 192.168.10.250
-ifaces: "lo0 en0"
+antispoof_ifaces: "lo0 en0"
 block_ips: yes
 blocklist_files: 'file "/etc/pf.drop.txt" file "/etc/pf.edrop.txt" file "/etc/pf.talos.txt" file "/etc/pf.stamparm.txt"'
