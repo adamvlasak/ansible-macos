@@ -16,13 +16,13 @@ packages:
   - lua
   - make
   - midnight-commander
-  - neovim
   - node
   - ripgrep
   - sox
   - sqlite
   - tmux
   - tree
+  - watch
   - wget
   - xz
   - zsh
@@ -30,19 +30,15 @@ packages:
 
 cask_packages:
   - appcleaner
-  - brave-browser
-  - calibre
   - discord
   - dotnet-sdk
   - firefox
   - font-fira-code
+  - font-fira-sans
   - google-chrome
   - iterm2
   - keepingyouawake
-  - megasync
-  - obs
   - suspicious-package
   - vcv-rack
   - visual-studio-code
   - vlc
-  - yt-music
