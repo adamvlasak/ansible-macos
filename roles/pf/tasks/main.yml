@@ -52,3 +52,11 @@
     replace: "# "
   notify:
     - restart fw
+
+- name: setup launchctl plist
+  template:
+    src: plist.j2
+    dest: /Library/LaunchDaemons/pf.plist
+    owner: root
+    group: wheel
+    mode: 0644
