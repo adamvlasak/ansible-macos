@@ -4,8 +4,11 @@ test:
 provision:
 	ansible-playbook --diff playbook.yml --skip-tags=pf
 
-test.pf:
+pf.test:
 	sudo ansible-playbook --diff playbook.yml --tags=pf
 
-provision.pf:
+pf.provision:
 	sudo ansible-playbook --diff playbook.yml --tags=pf
+
+pf.blocklists:
+	sudo ansible-playbook --diff playbook.yml --tags=blocklist

@@ -36,6 +36,7 @@
     - flush all
     - restart fw
   tags:
+    - blocklist
     - pf
 
 - name: download EDROP from spamhaus.org
@@ -49,6 +50,7 @@
     - flush all
     - restart fw
   tags:
+    - blocklist
     - pf
 
 - name: download ips from talos
@@ -62,6 +64,13 @@
     - flush all
     - restart fw
   tags:
+    - blocklist
+    - pf
+
+- name: download ips from stamparm/ipsum (appear at least on 3 blocklists)
+  shell: curl --compressed https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt 2>/dev/null | grep -v "#" | grep -v -E "\s[1-2]$" | cut -f 1 | tee /etc/pf.stamparm.txt
+  tags:
+    - blocklist
     - pf
 
 - name: replace ; with #
@@ -73,6 +82,7 @@
     - flush all
     - restart fw
   tags:
+    - blocklist
     - pf
 
 - name: replace ; with #
@@ -84,6 +94,7 @@
     - flush all
     - restart fw
   tags:
+    - blocklist
     - pf
 
 - name: setup launchctl plist
