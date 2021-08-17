@@ -1,0 +1,48 @@
+call plug#begin('./.vim/site/plugged')
+{% for plugin in vim_plugins %}
+Plug '{{ plugin.split('/')[3] }}/{{ plugin.split('/')[4] }}'
+{% endfor %}
+call plug#end()
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:ansible_unindent_after_newline = 1
+let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
+let g:ansible_attribute_highlight = "ob"
+let g:ansible_name_highlight = 'd'
+let g:ansible_extra_keywords_highlight = 1
+let g:ansible_normal_keywords_highlight = 'Constant'
+let g:ansible_with_keywords_highlight = 'Constant'
+
+let g:syntastic_javascript_checkers = ['eslint']
+
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+
+map ; :Files<CR>
+
+set noshowmode
+
+set number 
+set showmode
+set nocompatible
+set backspace=2
+syntax on
+set fileencodings=utf-8,latin2
+filetype plugin indent off
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+if &term == "screen"
+  set t_Co=256
+endif
+
+colorscheme desert

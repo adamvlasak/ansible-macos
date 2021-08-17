@@ -1,0 +1,35 @@
+---
+- name: prepare vimplug directories
+  file:
+    path: "/Users/k23/.vim/autoload"
+    state: directory
+    recurse: yes
+  tags:
+    - vim
+
+- name: install vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "/Users/k23/.vim/autoload/plug.vim"
+  when: not ansible_check_mode
+  tags:
+    - vim
+
+- name: put plugins into plugged directory
+  git:
+    repo: "{{ item }}"
+    dest: "/Users/k23/.vim/plugged/{{ item.split('/')[4] }}"
+    update: yes
+    depth: 1
+  when: vim_plugins is defined and not ansible_check_mode
+  loop: "{{ vim_plugins }}"
+  tags:
+    - vim
+
+- name: provision .vimrc
+  template:
+    dest: "/Users/k23/.vimrc"
+    src: vimrc.j2
+  tags:
+    - vim
+    - vimrc
