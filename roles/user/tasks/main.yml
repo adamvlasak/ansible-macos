@@ -1,0 +1,7 @@
+---
+- name: provision .zshrc
+  template:
+    src: zshrc.j2
+    dest: "{{ lookup('env','HOME') }}/.zshrc"
+  tags:
+    - user
