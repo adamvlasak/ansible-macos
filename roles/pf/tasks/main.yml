@@ -1,0 +1,54 @@
+---
+- name: provision /etc/pf.conf
+  template:
+    src: pf.conf.j2
+    dest: /etc/pf.conf
+    owner: root
+    group: wheel
+    mode: 0644
+  notify:
+    - restart fw
+
+- name: provision anchor /etc/pf.anchors/pf.rules
+  template:
+    src: pf.rules.j2
+    dest: /etc/pf.anchors/pf.rules
+    owner: root
+    group: wheel
+    mode: 0644
+  notify:
+    - restart fw
+
+- name: download DROP from spamhaus.org
+  get_url:
+    url: https://www.spamhaus.org/drop/drop.txt
+    dest: /etc/pf.drop.txt
+    owner: root
+    group: wheel
+  notify:
+    - restart fw
+
+- name: download EDROP from spamhaus.org
+  get_url:
+    url: https://www.spamhaus.org/drop/edrop.txt
+    dest: /etc/pf.edrop.txt
+    owner: root
+    group: wheel
+  notify:
+    - restart fw
+
+- name: replace ; with #
+  replace:
+    path: /etc/pf.drop.txt
+    regexp: "; "
+    replace: "# "
+  notify:
+    - restart fw
+
+- name: replace ; with #
+  replace:
+    path: /etc/pf.edrop.txt
+    regexp: "; "
+    replace: "# "
+  notify:
+    - restart fw

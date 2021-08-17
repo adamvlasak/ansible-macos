@@ -1,0 +1,3 @@
+---
+- name: restart fw
+  command: /sbin/pfctl -v -e -f /etc/pf.anchors/pf.rules
