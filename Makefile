@@ -5,7 +5,7 @@ provision:
 	ansible-playbook --diff playbook.yml --skip-tags=pf
 
 pf.test:
-	sudo ansible-playbook --diff playbook.yml --tags=pf
+	sudo ansible-playbook --check --diff playbook.yml --tags=pf
 
 pf.provision:
 	sudo ansible-playbook --diff playbook.yml --tags=pf
