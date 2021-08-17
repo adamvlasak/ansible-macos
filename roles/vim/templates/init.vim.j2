@@ -1,6 +1,6 @@
-call plug#begin('./.vim/site/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 {% for plugin in vim_plugins %}
-Plug '{{ plugin.split('/')[3] }}/{{ plugin.split('/')[4] }}'
+Plug '{{ plugin }}'
 {% endfor %}
 call plug#end()
 
@@ -28,9 +28,7 @@ let g:javascript_plugin_ngdoc = 1
 
 map ; :Files<CR>
 
-set noshowmode
-
-set number 
+set number
 set showmode
 set nocompatible
 set backspace=2
@@ -40,9 +38,5 @@ filetype plugin indent off
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
-if &term == "screen"
-  set t_Co=256
-endif
 
 colorscheme desert

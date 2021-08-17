@@ -4,6 +4,12 @@ test:
 provision:
 	ansible-playbook --diff playbook.yml --skip-tags=pf
 
+vim.test:
+	ansible-playbook --check --diff playbook.yml --skip-tags=pf --tags=vim
+
+vim.provision:
+	ansible-playbook --diff playbook.yml --skip-tags=pf --tags=vim
+
 pf.test:
 	sudo ansible-playbook --check --diff playbook.yml --tags=pf
 

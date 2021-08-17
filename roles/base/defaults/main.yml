@@ -16,6 +16,7 @@ packages:
   - lua
   - make
   - midnight-commander
+  - neovim
   - node
   - ripgrep
   - sox
