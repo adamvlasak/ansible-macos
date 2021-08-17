@@ -30,7 +30,7 @@ block in log quick from no-route to any
 block all
 
 # Block bad IPs
-table <badguys> persist file "/etc/pf.drop.txt" file "/etc/pf.edrop.txt"
+table <badguys> persist file "/etc/pf.drop.txt" file "/etc/pf.edrop.txt" file "/etc/pf.talos.txt"
 block return out log quick from any to <badguys>
 
 # Allow critical system traffic

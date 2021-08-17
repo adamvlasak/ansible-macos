@@ -51,6 +51,19 @@
   tags:
     - pf
 
+- name: download ips from talos
+  get_url:
+    url: http://www.talosintelligence.com/documents/ip-blacklist
+    dest: /etc/pf.talos.txt
+    force: yes
+    owner: root
+    group: wheel
+  notify:
+    - flush all
+    - restart fw
+  tags:
+    - pf
+
 - name: replace ; with #
   replace:
     path: /etc/pf.drop.txt
