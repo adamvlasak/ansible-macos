@@ -1,21 +1,22 @@
-# Options
+# --- Options ---
+
 set block-policy drop
 set fingerprints "/etc/pf.os"
 set ruleset-optimization basic
 set state-policy if-bound
 set skip on lo0
 
-# Normalization
+# --- Normalization ---
 
 # Scrub incoming packets
 scrub in all no-df
 scrub all reassemble tcp
 
-# Queueing
+# --- Queueing ---
 
-# Translation
+# --- Translation ---
 
-# Filtering
+# --- Filtering ---
 
 # Antispoof
 antispoof quick for { {{ antispoof_ifaces }} }

@@ -1,5 +1,6 @@
 ---
 packages:
+  - cmus
   - curl
   - dos2unix
   - ffmpeg
