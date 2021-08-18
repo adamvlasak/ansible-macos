@@ -92,8 +92,8 @@
 
 - name: setup launchctl plist
   template:
-    src: plist.j2
-    dest: /Library/LaunchDaemons/pf.plist
+    src: pf.plist.j2
+    dest: /Library/LaunchDaemons/org.{{ lookup('env','USER') }}.pf.plist
     owner: root
     group: wheel
     mode: 0644

@@ -2,5 +2,5 @@
 - name: restart fw
   community.general.launchd:
     enabled: yes
-    name: pf
+    name: org.{{ lookup('env','USER') }}.pf
     state: restarted
