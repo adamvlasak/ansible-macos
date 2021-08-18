@@ -1,7 +1,6 @@
 ---
-- name: flush all
-  command: /sbin/pfctl -F all
-
 - name: restart fw
-  command: /sbin/pfctl -e -f /etc/pf.anchors/pf.rules
-  ignore_errors: yes
+  community.general.launchd:
+    enabled: yes
+    name: pf
+    state: restarted

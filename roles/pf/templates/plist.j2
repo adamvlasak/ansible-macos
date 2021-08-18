@@ -3,13 +3,15 @@
 <plist version="1.0">
 <dict>
         <key>Label</key>
-        <string>pf.plist</string>
+        <string>pf</string>
         <key>Program</key>
         <string>/sbin/pfctl</string>
         <key>ProgramArguments</key>
         <array>
                 <string>/sbin/pfctl</string>
                 <string>-e</string>
+                <string>-F</string>
+                <string>all</string>
                 <string>-f</string>
                 <string>/etc/pf.anchors/pf.rules</string>
         </array>
