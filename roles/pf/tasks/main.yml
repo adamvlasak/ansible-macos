@@ -62,6 +62,19 @@
     - blocklist
     - pf
 
+- name: download ips from blocklist.de
+  get_url:
+    url: https://lists.blocklist.de/lists/all.txt
+    dest: /etc/pf.blocklist.de.txt
+    force: yes
+    owner: root
+    group: wheel
+  notify:
+    - restart fw
+  tags:
+    - blocklist
+    - pf
+
 - name: download ips from stamparm/ipsum (appear at least on 3 blocklists)
   shell: curl --compressed https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt 2>/dev/null | grep -v "#" | grep -v -E "\s[1-2]$" | cut -f 1 | tee /etc/pf.stamparm.txt
   tags:

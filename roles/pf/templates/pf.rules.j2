@@ -32,7 +32,8 @@ block all
 
 {% if block_ips %}
 # Block bad IPs
-table <badguys> persist {{ blocklist_files }}
+table <badguys> persist{% for blocklist in blocklist_files %} file "{{ blocklist }}"{% endfor %}
+
 block return out quick from any to <badguys>
 {% endif %}
 
