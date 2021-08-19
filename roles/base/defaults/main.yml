@@ -25,6 +25,7 @@ packages:
   - watch
   - wget
   - xz
+  - youtube-dl
   - zsh
   - zsh-completions
 
