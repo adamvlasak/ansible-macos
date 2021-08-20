@@ -5,3 +5,13 @@
     dest: "{{ lookup('env','HOME') }}/.zshrc"
   tags:
     - user
+
+- name: set font smoothing
+  community.general.osx_defaults:
+    key: AppleFontSmoothing
+    host: currentHost
+    type: int
+    value: "{{ font_smoothing }}"
+    state: present
+  tags:
+    - user
