@@ -9,8 +9,7 @@ set skip on lo0
 # --- Normalization ---
 
 # Scrub incoming packets
-scrub in all no-df
-scrub all reassemble tcp
+scrub all no-df random-id reassemble tcp fragment reassemble
 
 # --- Queueing ---
 
@@ -20,9 +19,6 @@ scrub all reassemble tcp
 
 # Antispoof
 antispoof quick for { {{ antispoof_ifaces }} }
-
-# Activate spoofing protection for all interfaces
-block in quick from urpf-failed
 
 # Block to/from illegal destinations or sources
 block in quick from no-route to any
