@@ -6,6 +6,5 @@ block_ips: yes
 blocklist_files:
   - /etc/pf.drop.txt
   - /etc/pf.edrop.txt
-  - /etc/pf.talos.txt
   - /etc/pf.stamparm.txt
   - /etc/pf.blocklist.de.txt
