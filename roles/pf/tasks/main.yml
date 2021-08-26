@@ -49,19 +49,6 @@
     - blocklist
     - pf
 
-- name: download ips from talos
-  get_url:
-    url: http://www.talosintelligence.com/documents/ip-blacklist
-    dest: /etc/pf.talos.txt
-    force: yes
-    owner: root
-    group: wheel
-  notify:
-    - restart fw
-  tags:
-    - blocklist
-    - pf
-
 - name: download ips from blocklist.de
   get_url:
     url: https://lists.blocklist.de/lists/all.txt
