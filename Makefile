@@ -14,7 +14,7 @@ user.test:
 	ansible-playbook --check --diff playbook.yml --skip-tags=pf --tags=user
 
 user.provision:
-	ansible-playbook --diff playbook.yml --skip-tags=pf --tags=user
+	sudo ansible-playbook --diff playbook.yml --skip-tags=pf --tags=user
 
 pf.test:
 	sudo ansible-playbook --check --diff playbook.yml --tags=pf
