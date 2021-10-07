@@ -1,2 +1,9 @@
 ---
 font_smoothing: 0
+editor: nvim
+shell: /opt/homebrew/bin/zsh
+path:
+  - /opt/homebrew/bin
+  - /opt/homebrew/sbin
+  - /opt/homebrew/opt/curl/bin
+  - ${PATH}

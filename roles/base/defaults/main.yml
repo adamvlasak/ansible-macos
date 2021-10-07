@@ -17,11 +17,16 @@ packages:
   - midnight-commander
   - neovim
   - node
+  - pandoc
+  - python
   - ripgrep
   - sox
   - sqlite
+  - telnet
+  - tig
   - tmux
   - tree
+  - w3m
   - watch
   - wget
   - xz
@@ -31,15 +36,22 @@ packages:
 
 cask_packages:
   - appcleaner
+  - blackhole-16ch
+  - calibre
   - discord
   - dotnet-sdk
   - firefox
   - font-fira-code
   - font-fira-sans
   - google-chrome
+  - handbrake
   - iterm2
   - keepingyouawake
+  - megasync
+  - obs
+  - signal
   - suspicious-package
+  - the-unarchiver
   - vcv-rack
   - visual-studio-code
   - vlc

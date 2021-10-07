@@ -15,3 +15,10 @@
     state: present
   tags:
     - user
+
+- name: change user's shell
+  user:
+    name: k23
+    shell: "{{ shell }}"
+  tags:
+    - user
