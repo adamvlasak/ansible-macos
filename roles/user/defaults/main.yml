@@ -1,4 +1,5 @@
 ---
+user: k23
 font_smoothing: 0
 editor: nvim
 shell: /opt/homebrew/bin/zsh
