@@ -9,7 +9,7 @@ set skip on lo0
 # --- Normalization ---
 
 # Scrub incoming packets
-scrub all no-df random-id reassemble tcp fragment reassemble
+scrub in all no-df
 
 # --- Queueing ---
 
