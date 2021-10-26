@@ -5,6 +5,7 @@ set fingerprints "/etc/pf.os"
 set ruleset-optimization basic
 set state-policy if-bound
 set skip on lo0
+icmp_types = "{ echoreq unreach }"
 
 # --- Normalization ---
 
@@ -44,3 +45,4 @@ pass out quick inet proto tcp from any to any port 80 keep state
 pass out quick inet proto udp from any to {{ dns }} port 53 keep state
 pass out quick inet proto udp from any to any port 123 keep state
 pass out quick inet proto udp from any to any port 443 keep state
+pass inet proto icmp icmp-type $icmp_types
