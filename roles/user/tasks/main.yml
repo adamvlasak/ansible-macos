@@ -6,6 +6,13 @@
   tags:
     - user
 
+- name: download zsh-z plugin
+  get_url:
+    url: https://raw.githubusercontent.com/agkozak/zsh-z/master/zsh-z.plugin.zsh
+    dest: "{{ lookup('env', 'ZSH') }}/custom/plugins/zsh-z.plugin.zsh"
+  tags:
+    - user
+
 - name: set font smoothing
   community.general.osx_defaults:
     key: AppleFontSmoothing
