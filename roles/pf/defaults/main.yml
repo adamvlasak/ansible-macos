@@ -1,6 +1,5 @@
 ---
-gateway: 192.168.10.1
-dns: 192.168.10.250
+local_network: 192.168.10.0/24
 antispoof_ifaces: "lo0 en0"
 block_ips: yes
 blocklist_files:

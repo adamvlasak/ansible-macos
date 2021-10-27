@@ -41,9 +41,8 @@ pass in quick inet proto udp from any port 67 to any port 68
 pass quick inet proto icmp icmp-type $icmp_types
 
 # Allow outgoing traffic
-pass out quick inet proto tcp from any to {{ gateway }} port 445 keep state
-pass out quick inet proto tcp from any to any port 22 keep state
+pass out quick inet proto { tcp udp } from any to {{ local_network }} keep state
 pass out quick inet proto { tcp udp } from any to any port 443 keep state
+pass out quick inet proto tcp from any to any port 22 keep state
 pass out quick inet proto tcp from any to any port 80 keep state
-pass out quick inet proto udp from any to {{ dns }} port 53 keep state
 pass out quick inet proto udp from any to any port 123 keep state
