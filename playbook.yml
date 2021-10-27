@@ -2,7 +2,6 @@
 - name: setup mac
   hosts: all
   roles:
-    - homebrew
     - base
     - user
     - vim
