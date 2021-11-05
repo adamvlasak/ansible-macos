@@ -4,3 +4,6 @@
     enabled: yes
     name: org.{{ lookup('env','USER') }}.pf
     state: restarted
+  tags:
+    - pf
+    - configure

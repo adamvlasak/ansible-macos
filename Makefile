@@ -22,5 +22,8 @@ pf.test:
 pf.provision:
 	sudo ansible-playbook --diff playbook.yml --tags=pf
 
+pf.configure:
+	sudo ansible-playbook --diff playbook.yml --tags=configure
+
 pf.blocklists:
 	sudo ansible-playbook --diff playbook.yml --tags=blocklist

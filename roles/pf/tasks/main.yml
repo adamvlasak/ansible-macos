@@ -10,6 +10,7 @@
     - restart fw
   tags:
     - pf
+    - configure
 
 - name: provision anchor /etc/pf.anchors/pf.rules
   template:
@@ -22,6 +23,7 @@
     - restart fw
   tags:
     - pf
+    - configure
 
 - name: download DROP from spamhaus.org
   get_url:
@@ -99,3 +101,4 @@
     mode: 0644
   tags:
     - pf
+    - configure
