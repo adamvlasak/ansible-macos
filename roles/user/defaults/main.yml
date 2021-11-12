@@ -7,4 +7,5 @@ path:
   - /opt/homebrew/bin
   - /opt/homebrew/sbin
   - /opt/homebrew/opt/curl/bin
+  - /Users/{{ user}}/.dotnet/tools
   - ${PATH}
