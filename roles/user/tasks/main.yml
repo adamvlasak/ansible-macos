@@ -22,3 +22,13 @@
     state: present
   tags:
     - user
+
+- name: enable vs code key repeat
+  community.general.osx_defaults:
+    domain: com.microsoft.VSCode
+    key: ApplePressAndHoldEnabled
+    type: bool
+    value: false
+    state: present
+  tags:
+    - user
