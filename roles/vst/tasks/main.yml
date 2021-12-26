@@ -1,0 +1,14 @@
+---
+- name: set correct permissions to plugin directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0755
+    recurse: yes
+  loop:
+    - ~/Library/Audio/Plug-ins
+    - /Library/Audio/Plug-ins
+  tags:
+    - vst
