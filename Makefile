@@ -17,13 +17,19 @@ user.provision:
 	ansible-playbook --diff playbook.yml --skip-tags=pf --tags=user
 
 pf.test:
-	sudo ansible-playbook --check --diff playbook.yml --tags=pf
+	ansible-playbook --check --diff playbook.yml --tags=pf
 
 pf.provision:
-	sudo ansible-playbook --diff playbook.yml --tags=pf
+	ansible-playbook --diff playbook.yml --tags=pf
 
 pf.configure:
-	sudo ansible-playbook --diff playbook.yml --tags=configure
+	ansible-playbook --diff playbook.yml --tags=configure
 
 pf.blocklists:
-	sudo ansible-playbook --diff playbook.yml --tags=blocklist
+	ansible-playbook --diff playbook.yml --tags=blocklist
+
+vst.test:
+	ansible-playbook --check --diff playbook.yml --tags=vst
+
+vst.provision:
+	ansible-playbook --diff playbook.yml --tags=vst
