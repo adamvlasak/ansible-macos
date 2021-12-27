@@ -1,14 +1,19 @@
 ---
-- name: install homebrew packages
-  homebrew:
-    name: "{{ packages }}"
-    state: present
-  tags:
-    - base
+- block:
+    - name: install homebrew packages
+      homebrew:
+        name: "{{ packages }}"
+        state: present
+      tags:
+        - base
 
-- name: install homebrew cask packages
-  homebrew_cask:
-    name: "{{ cask_packages }}"
-    state: present
-  tags:
-    - base
+    - name: install homebrew cask packages
+      become_user: "{{ user }}"
+      become: yes
+      homebrew_cask:
+        name: "{{ cask_packages }}"
+        state: present
+      tags:
+        - base
+  become_user: "{{ user }}"
+  become: yes

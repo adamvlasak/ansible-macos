@@ -1,34 +1,37 @@
 ---
-- name: provision .zshrc
-  template:
-    src: zshrc.j2
-    dest: "{{ lookup('env','HOME') }}/.zshrc"
-  tags:
-    - user
+- block:
+    - name: provision .zshrc
+      template:
+        src: zshrc.j2
+        dest: "{{ lookup('env','HOME') }}/.zshrc"
+      tags:
+        - user
 
-- name: download zsh-z plugin
-  get_url:
-    url: https://raw.githubusercontent.com/agkozak/zsh-z/master/zsh-z.plugin.zsh
-    dest: "{{ lookup('env', 'ZSH') }}/custom/plugins/zsh-z.plugin.zsh"
-  tags:
-    - user
+    - name: download zsh-z plugin
+      get_url:
+        url: https://raw.githubusercontent.com/agkozak/zsh-z/master/zsh-z.plugin.zsh
+        dest: "{{ ohmyzsh }}/custom/plugins/zsh-z.plugin.zsh"
+      tags:
+        - user
 
-- name: set font smoothing
-  community.general.osx_defaults:
-    key: AppleFontSmoothing
-    host: currentHost
-    type: int
-    value: "{{ font_smoothing }}"
-    state: present
-  tags:
-    - user
+    - name: set font smoothing
+      community.general.osx_defaults:
+        key: AppleFontSmoothing
+        host: currentHost
+        type: int
+        value: "{{ font_smoothing }}"
+        state: present
+      tags:
+        - user
 
-- name: enable vs code key repeat
-  community.general.osx_defaults:
-    domain: com.microsoft.VSCode
-    key: ApplePressAndHoldEnabled
-    type: bool
-    value: false
-    state: present
-  tags:
-    - user
+    - name: enable vs code key repeat
+      community.general.osx_defaults:
+        domain: com.microsoft.VSCode
+        key: ApplePressAndHoldEnabled
+        type: bool
+        value: false
+        state: present
+      tags:
+        - user
+  become_user: "{{ user }}"
+  become: yes
