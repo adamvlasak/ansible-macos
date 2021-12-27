@@ -1,6 +1,35 @@
-# ansible playbook for setup of Mac
+# ansible playbook for MacOS
 
-This playbook helps with configuration of MacOS.
+This ansible playbook helps with configuration of MacOS.
+
+## Features
+
+- installs some homebrew packages
+- configures pf firewall
+- configures shell
+- configures vim
+
+## Configuration
+
+Install ansible using brew:
+
+```
+brew install ansible
+```
+
+You need to create file called `vars.yml`:
+
+```
+---
+user: foobar
+group: staff
+```
+
+Then you'll need file called `hosts` and define your computer:
+
+```
+localhost ansible_connection=local
+```
 
 ## Provisioning
 
