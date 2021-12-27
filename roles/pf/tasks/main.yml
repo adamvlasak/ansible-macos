@@ -25,46 +25,24 @@
     - pf
     - configure
 
-- name: download DROP from spamhaus.org
+- name: download ip blocklists
   get_url:
-    url: https://www.spamhaus.org/drop/drop.txt
-    dest: /etc/pf.drop.txt
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
     force: yes
     owner: root
     group: wheel
+  loop:
+    - { url: https://www.spamhaus.org/drop/edrop.txt, dest: /etc/pf.edrop.txt }
+    - { url: https://www.spamhaus.org/drop/drop.txt, dest: /etc/pf.drop.txt }
+    - { url: https://lists.blocklist.de/lists/all.txt, dest: /etc/pf.blocklist.de.txt }
   notify:
     - restart fw
   tags:
     - blocklist
     - pf
 
-- name: download EDROP from spamhaus.org
-  get_url:
-    url: https://www.spamhaus.org/drop/edrop.txt
-    dest: /etc/pf.edrop.txt
-    force: yes
-    owner: root
-    group: wheel
-  notify:
-    - restart fw
-  tags:
-    - blocklist
-    - pf
-
-- name: download ips from blocklist.de
-  get_url:
-    url: https://lists.blocklist.de/lists/all.txt
-    dest: /etc/pf.blocklist.de.txt
-    force: yes
-    owner: root
-    group: wheel
-  notify:
-    - restart fw
-  tags:
-    - blocklist
-    - pf
-
-- name: download ips from stamparm/ipsum (appear at least on 3 blocklists)
+- name: download ip blocklist from stamparm/ipsum (appear at least on 3 blocklists)
   shell: curl --compressed https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt 2>/dev/null | grep -v "#" | grep -v -E "\s[1-2]$" | cut -f 1 | tee /etc/pf.stamparm.txt
   tags:
     - blocklist
@@ -72,20 +50,12 @@
 
 - name: replace ; with #
   replace:
-    path: /etc/pf.drop.txt
+    path: "{{ item }}"
     regexp: "; "
     replace: "# "
-  notify:
-    - restart fw
-  tags:
-    - blocklist
-    - pf
-
-- name: replace ; with #
-  replace:
-    path: /etc/pf.edrop.txt
-    regexp: "; "
-    replace: "# "
+  loop:
+    - /etc/pf.drop.txt
+    - /etc/pf.edrop.txt
   notify:
     - restart fw
   tags:
