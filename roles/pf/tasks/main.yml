@@ -44,6 +44,8 @@
 
 - name: download ip blocklist from stamparm/ipsum (appear at least on 3 blocklists)
   shell: curl --compressed https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt 2>/dev/null | grep -v "#" | grep -v -E "\s[1-2]$" | cut -f 1 | tee /etc/pf.stamparm.txt
+  notify:
+    - restart fw
   tags:
     - blocklist
     - pf
@@ -69,6 +71,8 @@
     owner: root
     group: wheel
     mode: 0644
+  notify:
+    - restart fw
   tags:
     - pf
     - configure
