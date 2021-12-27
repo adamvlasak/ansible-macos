@@ -1,6 +1,8 @@
 ---
 - name: setup mac
   hosts: all
+  vars_files:
+    - vars.yml
   roles:
     - base
     - user
