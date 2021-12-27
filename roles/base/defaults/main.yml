@@ -35,7 +35,6 @@ packages:
   - zsh-completions
 
 cask_packages:
-  - appcleaner
   - blackhole-16ch
   - calibre
   - discord
@@ -44,10 +43,8 @@ cask_packages:
   - font-fira-code
   - font-fira-sans
   - google-chrome
-  - handbrake
   - iterm2
   - keepingyouawake
-  - megasync
   - obs
   - signal
   - suspicious-package
