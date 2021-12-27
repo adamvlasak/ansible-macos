@@ -40,6 +40,7 @@ cask_packages:
   - discord
   - dotnet-sdk
   - firefox
+  - fl-studio
   - font-fira-code
   - font-fira-sans
   - google-chrome
