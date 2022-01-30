@@ -5,7 +5,6 @@ set fingerprints "/etc/pf.os"
 set ruleset-optimization basic
 set state-policy if-bound
 set skip on lo0
-icmp_types = "{ echoreq unreach }"
 
 # --- Normalization ---
 
@@ -30,8 +29,9 @@ block all
 # Allow critical system traffic
 pass in quick inet proto udp from any port 67 to any port 68
 
-# Allow ICMP
-pass quick inet proto icmp icmp-type $icmp_types
+# Allow ICMP on local network
+pass in proto icmp from {{ local_network }}
+pass out proto icmp to {{ local_network }}
 
 # Allow outgoing traffic
 pass out quick inet proto { tcp udp } from any to {{ local_network }} keep state
