@@ -19,12 +19,12 @@
 #
 # com.apple anchor point
 #
-# scrub-anchor "com.apple/*"
-# nat-anchor "com.apple/*"
-# rdr-anchor "com.apple/*"
-# dummynet-anchor "com.apple/*"
-# anchor "com.apple/*"
-# load anchor "com.apple" from "/etc/pf.anchors/com.apple"
+scrub-anchor "com.apple/*"
+nat-anchor "com.apple/*"
+rdr-anchor "com.apple/*"
+dummynet-anchor "com.apple/*"
+anchor "com.apple/*"
+load anchor "com.apple" from "/etc/pf.anchors/com.apple"
 
 anchor "pf.rules"
 load anchor "pf.rules" from "/etc/pf.anchors/pf.rules"

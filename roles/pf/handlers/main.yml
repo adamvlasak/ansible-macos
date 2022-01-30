@@ -1,8 +1,7 @@
 ---
 - name: restart fw
   community.general.launchd:
-    enabled: yes
-    name: org.{{ lookup('env','USER') }}.pf
+    name: com.apple.pfctl
     state: restarted
   tags:
     - pf
