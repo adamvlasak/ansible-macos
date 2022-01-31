@@ -1,9 +1,3 @@
 ---
 local_network: 192.168.10.0/24
-antispoof_ifaces: "lo0 en0"
-block_ips: yes
-blocklist_files:
-  - /etc/pf.drop.txt
-  - /etc/pf.edrop.txt
-  - /etc/pf.stamparm.txt
-  - /etc/pf.blocklist.de.txt
+interface: en0
