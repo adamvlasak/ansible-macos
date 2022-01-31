@@ -30,7 +30,7 @@ ZSH_THEME="robbyrussell"
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+zstyle ':omz:update' frequency 1
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -75,21 +75,15 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-source $ZSH/custom/plugins/zsh-z.plugin.zsh
-
 # User configuration
+
+# Enable z-plugin https://github.com/agkozak/zsh-z/
+source $ZSH/custom/plugins/zsh-z.plugin.zsh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 export EDITOR="{{ editor }}"
 
@@ -109,3 +103,6 @@ alias u="brew update && brew upgrade"
 alias la="ls -la"
 alias ll="ls -l"
 alias vim="nvim"
+alias pfctlcheck="sudo pfctl -nvf /etc/pf.conf"
+alias pfctlrestart="sudo pfctl -F all -f /etc/pf.conf"
+alias pfctlstat='watch "sudo pfctl -si"'
