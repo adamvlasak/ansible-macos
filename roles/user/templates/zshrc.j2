@@ -99,6 +99,9 @@ export EDITOR="{{ editor }}"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Force curl to use TLS (see https://curl.se/docs/sslcerts.html)
+export CURL_SSL_BACKEND=secure-transport
+
 alias u="brew update && brew upgrade"
 alias la="ls -la"
 alias ll="ls -l"
