@@ -1,3 +1,9 @@
 ---
-local_network: 192.168.10.0/24
-interface: en0
+network:
+  gateway: 192.168.10.1
+  nameserver: 192.168.10.250
+  subnet: 192.168.10.0/24
+  interface: en0
+
+pf:
+  skipped_interfaces: ["lo0"]
