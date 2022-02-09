@@ -1,6 +1,8 @@
 ---
 packages:
   - cmus
+  - convmv
+  - cuetools
   - curl
   - dos2unix
   - ffmpeg
@@ -8,18 +10,28 @@ packages:
   - fzf
   - gawk
   - git
+  - glances
   - go
   - grep
+  - helm
+  - hugo
   - jq
+  - kind
   - lame
   - lua
   - make
   - midnight-commander
+  - minikube
+  - moreutils
   - neovim
+  - nmap
   - node
   - pandoc
   - python
+  - qemu
   - ripgrep
+  - rsync
+  - shntool
   - sox
   - sqlite
   - telnet
@@ -29,7 +41,6 @@ packages:
   - w3m
   - watch
   - wget
-  - xz
   - youtube-dl
   - zsh
   - zsh-completions
@@ -38,15 +49,18 @@ cask_packages:
   - blackhole-16ch
   - calibre
   - discord
+  - docker
   - dotnet-sdk
   - firefox
   - fl-studio
   - font-fira-code
   - font-fira-sans
-  - google-chrome
   - iterm2
   - keepingyouawake
+  - musicbrainz-picard
   - obs
+  - openttd
+  - reaper
   - signal
   - suspicious-package
   - the-unarchiver
