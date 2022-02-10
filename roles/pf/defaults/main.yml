@@ -6,4 +6,4 @@ network:
   interface: en0
 
 pf:
-  skipped_interfaces: ["lo0", "awdl0"]
+  skipped_interfaces: ["lo0"]

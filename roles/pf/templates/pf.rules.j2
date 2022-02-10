@@ -36,6 +36,10 @@ pass out quick on {{ network.interface }} proto icmp to {{ network.subnet }}
 # Allow incoming traffic from local network
 pass in quick on {{ network.interface }} inet from {{ network.subnet }}
 
+# Allow AirDrop on local network
+pass in quick on awdl0 from fe80::/10
+pass out quick on awdl0 from any to fe80::/10 keep state
+
 # Allow outgoing traffic
 pass out quick on {{ network.interface }} inet proto { tcp udp } from any to {{ network.subnet }} keep state
 pass out quick on {{ network.interface }} inet proto { tcp udp } from any to any port 443 keep state
