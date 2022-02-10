@@ -8,4 +8,5 @@ path:
   - /opt/homebrew/sbin
   - /opt/homebrew/opt/curl/bin
   - /Users/{{ user}}/.dotnet/tools
+  - ./node_modules/.bin
   - ${PATH}
