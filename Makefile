@@ -1,20 +1,20 @@
 test:
-	ansible-playbook --check --diff playbook.yml --skip-tags=pf
+	ansible-playbook --check --diff playbook.yml
 
 provision:
-	ansible-playbook --diff playbook.yml --skip-tags=pf
+	ansible-playbook --diff playbook.yml
 
 vim.test:
-	ansible-playbook --check --diff playbook.yml --skip-tags=pf --tags=vim
+	ansible-playbook --check --diff playbook.yml --tags=vim
 
 vim.provision:
-	ansible-playbook --diff playbook.yml --skip-tags=pf --tags=vim
+	ansible-playbook --diff playbook.yml --tags=vim
 
 user.test:
-	ansible-playbook --check --diff playbook.yml --skip-tags=pf --tags=user
+	ansible-playbook --check --diff playbook.yml --tags=user
 
 user.provision:
-	ansible-playbook --diff playbook.yml --skip-tags=pf --tags=user
+	ansible-playbook --diff playbook.yml --tags=user
 
 pf.test:
 	ansible-playbook --check --diff playbook.yml --tags=pf
