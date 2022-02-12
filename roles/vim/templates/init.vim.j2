@@ -28,15 +28,17 @@ let g:javascript_plugin_ngdoc = 1
 
 map ; :Files<CR>
 
+colorscheme desert
+syntax on
+filetype plugin indent off
+
 set number
-set showmode
+set noshowmode
 set nocompatible
 set backspace=2
-syntax on
 set fileencodings=utf-8,latin2
-filetype plugin indent off
-set tabstop=2
-set shiftwidth=2
-set expandtab
+set ts=4 sw=4 expandtab smarttab
 
-colorscheme desert
+autocmd FileType yaml setlocal ts=2 sw=2
+autocmd FileType yml setlocal ts=2 sw=2
+autocmd FileType make setlocal ts=2 sw=2 noexpandtab
