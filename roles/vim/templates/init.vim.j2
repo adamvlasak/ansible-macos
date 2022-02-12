@@ -1,5 +1,5 @@
 call plug#begin(stdpath('data') . '/plugged')
-{% for plugin in vim_plugins %}
+{% for plugin in vim.plugins %}
 Plug '{{ plugin }}'
 {% endfor %}
 call plug#end()
@@ -28,7 +28,7 @@ let g:javascript_plugin_ngdoc = 1
 
 map ; :Files<CR>
 
-colorscheme desert
+colorscheme {{ vim.colorscheme }}
 syntax on
 filetype plugin indent off
 

@@ -26,5 +26,5 @@
         state: present
       tags:
         - user
-  become_user: "{{ user }}"
+  become_user: "{{ user_name }}"
   become: yes

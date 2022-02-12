@@ -1,9 +1,0 @@
----
-vim_plugins:
-  - vim-syntastic/syntastic
-  - pearofducks/ansible-vim
-  - leafgarland/typescript-vim
-  - pangloss/vim-javascript
-  - vim-airline/vim-airline
-  - junegunn/fzf
-  - junegunn/fzf.vim

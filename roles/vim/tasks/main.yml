@@ -31,5 +31,5 @@
       tags:
         - vim
         - vimrc
-  become_user: "{{ user }}"
+  become_user: "{{ user_name }}"
   become: yes

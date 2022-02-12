@@ -3,6 +3,3 @@
   community.general.launchd:
     name: com.apple.pfctl
     state: restarted
-  tags:
-    - pf
-    - configure

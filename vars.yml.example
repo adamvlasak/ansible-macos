@@ -1,9 +1,109 @@
 ---
-user: foobar
-group: staff
+user_name: foobar
+user_group: staff
+
+font_smoothing: 0
+editor: nvim
+shell: /opt/homebrew/bin/zsh
+path:
+  - /opt/homebrew/bin
+  - /opt/homebrew/sbin
+  - /opt/homebrew/opt/curl/bin
+  - /Users/{{ user_name }}/.dotnet/tools
+  - ./node_modules/.bin
+  - ${PATH}
 
 zsh:
   plugins:
     - git
     - colored-man-pages
     - z
+vim:
+  colorscheme: desert
+  plugins:
+    - vim-syntastic/syntastic
+    - pearofducks/ansible-vim
+    - leafgarland/typescript-vim
+    - pangloss/vim-javascript
+    - vim-airline/vim-airline
+    - junegunn/fzf
+    - junegunn/fzf.vim
+
+network:
+  gateway: 192.168.10.1
+  nameserver: 192.168.10.250
+  subnet: 192.168.10.0/24
+  interface: en0
+
+pf:
+  skipped_interfaces: ["lo0"]
+
+homebrew:
+  packages:
+    - cmus
+    - convmv
+    - cuetools
+    - curl
+    - dos2unix
+    - ffmpeg
+    - flac
+    - fzf
+    - gawk
+    - git
+    - glances
+    - go
+    - grep
+    - helm
+    - hugo
+    - jq
+    - kind
+    - lame
+    - lua
+    - make
+    - midnight-commander
+    - minikube
+    - moreutils
+    - neovim
+    - nmap
+    - node
+    - pandoc
+    - python
+    - qemu
+    - ripgrep
+    - rsync
+    - shntool
+    - sox
+    - sqlite
+    - telnet
+    - tig
+    - tmux
+    - tree
+    - w3m
+    - watch
+    - wget
+    - youtube-dl
+    - zsh
+    - zsh-completions
+
+  cask_packages:
+    - blackhole-16ch
+    - calibre
+    - discord
+    - docker
+    - dotnet-sdk
+    - firefox
+    - fl-studio
+    - font-fira-code
+    - font-fira-sans
+    - iterm2
+    - keepingyouawake
+    - musicbrainz-picard
+    - obs
+    - openttd
+    - reaper
+    - signal
+    - suspicious-package
+    - the-unarchiver
+    - vcv-rack
+    - visual-studio-code
+    - vlc
