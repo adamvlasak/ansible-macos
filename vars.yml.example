@@ -1,0 +1,9 @@
+---
+user: foobar
+group: staff
+
+zsh:
+  plugins:
+    - git
+    - colored-man-pages
+    - z
