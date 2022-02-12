@@ -27,9 +27,3 @@ pf.configure:
 
 pf.blocklists:
 	ansible-playbook --diff playbook.yml --tags=blocklist
-
-vst.test:
-	ansible-playbook --check --diff playbook.yml --tags=vst
-
-vst.provision:
-	ansible-playbook --diff playbook.yml --tags=vst
