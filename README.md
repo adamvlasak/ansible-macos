@@ -11,68 +11,24 @@ This ansible playbook helps with configuration of MacOS.
 
 ## Configuration
 
-Install ansible using brew:
-
+Install `ansible` using `brew`:
 ```
 brew install ansible
 ```
-
-You need to create file called `vars.yml`:
-
+Create a file called `hosts` and define ansible connection:
 ```
----
-user: foobar
-group: staff
+echo "localhost ansible_connection=local" > hosts
 ```
-
-Then you'll need file called `hosts` and define your computer:
-
-```
-localhost ansible_connection=local
-```
+Copy `vars.yml.example` to `vars.yml` and edit to your liking.
 
 ## Provisioning
 
 ```
-$ make test
+$ sudo make test
 ```
-
 > to test whole configuration out
-
 ```
-$ make provision
+$ sudo make provision
 ```
-
-> to provision everything
-
-````
-$ make pf.test
-````
-
-> to test out packet filter configuration
-
-
-````
-$ make pf.provision
-````
-
-> to provision packet filter configuration
-
-````
-$ make pf.blocklists
-````
-
-> to provision just ip blocklists for packet filter
-
-````
-$ make user.test
-````
-
-> to test out just user configuration
-
-
-````
-$ make user.provision
-````
-
-> to provision just user configuration
+> to actually provision confiuration
+or see other targets in `Makefile`.
