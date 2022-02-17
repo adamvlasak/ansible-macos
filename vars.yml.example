@@ -40,7 +40,6 @@ pf:
 
 homebrew:
   packages:
-    - cmus
     - convmv
     - cuetools
     - curl
@@ -95,6 +94,7 @@ homebrew:
     - fl-studio
     - font-fira-code
     - font-fira-sans
+    - iina
     - iterm2
     - keepingyouawake
     - musicbrainz-picard
@@ -106,4 +106,3 @@ homebrew:
     - the-unarchiver
     - vcv-rack
     - visual-studio-code
-    - vlc
