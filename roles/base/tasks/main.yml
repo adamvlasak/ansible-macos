@@ -13,5 +13,5 @@
         state: present
       tags:
         - base
-  become_user: "{{ user_name }}"
-  become: yes
+  become_user: "{{ user.login }}"
+  become: True

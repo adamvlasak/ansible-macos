@@ -99,11 +99,8 @@ export EDITOR="{{ editor }}"
 # Force curl to use TLS (see https://curl.se/docs/sslcerts.html)
 export CURL_SSL_BACKEND=secure-transport
 
-alias u="brew update && brew upgrade"
+alias u="brew update && brew upgrade && brew autoremove && brew cleanup"
 alias la="ls -la"
 alias ll="ls -l"
 alias vim="nvim"
-alias pfctlcheck="sudo pfctl -nvf /etc/pf.conf"
-alias pfctlrestart="sudo pfctl -F all -f /etc/pf.conf"
-alias pfctlstat='watch "sudo pfctl -si"'
 alias resetdock='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock'

@@ -1,9 +1,12 @@
 ---
 - block:
-    - name: provision .zshrc
+    - name: provision dotfiles
       template:
-        src: zshrc.j2
-        dest: "{{ lookup('env','HOME') }}/.zshrc"
+        src: "{{ item }}.j2"
+        dest: "{{ lookup('env','HOME') }}/.{{ item }}"
+      loop:
+        - zshrc
+        - gitconfig
       tags:
         - user
 
@@ -26,5 +29,5 @@
         state: present
       tags:
         - user
-  become_user: "{{ user_name }}"
-  become: yes
+  become_user: "{{ user.login }}"
+  become: True

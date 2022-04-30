@@ -1,6 +1,9 @@
 ---
-user_name: foobar
-user_group: staff
+user:
+  login: foobar
+  email: john@doe.org
+  full_name: John Doe
+  group: staff
 
 font_smoothing: 0
 editor: nvim
@@ -9,7 +12,7 @@ path:
   - /opt/homebrew/bin
   - /opt/homebrew/sbin
   - /opt/homebrew/opt/curl/bin
-  - /Users/{{ user_name }}/.dotnet/tools
+  - /Users/{{ user.login }}/.dotnet/tools
   - ./node_modules/.bin
   - ${PATH}
 

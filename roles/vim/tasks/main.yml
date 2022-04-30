@@ -4,7 +4,7 @@
       file:
         path: "{{ lookup('env','HOME') }}/.local/share/nvim/site/autoload"
         state: directory
-        recurse: yes
+        recurse: True
       tags:
         - vim
 
@@ -20,7 +20,7 @@
       file:
         path: "{{ lookup('env','HOME') }}/.config/nvim"
         state: directory
-        recurse: yes
+        recurse: True
       tags:
         - vim
 
@@ -31,5 +31,5 @@
       tags:
         - vim
         - vimrc
-  become_user: "{{ user_name }}"
-  become: yes
+  become_user: "{{ user.login }}"
+  become: True
