@@ -21,3 +21,6 @@ pf.test:
 
 pf.provision:
 	ansible-playbook --diff playbook.yml --tags=pf
+
+renoise.provision:
+	ansible-playbook --diff playbook.yml --tags=renoise

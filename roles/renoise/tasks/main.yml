@@ -1,0 +1,20 @@
+---
+- block:
+    - name: copy FiraCode font file to Renoise app directory
+      copy:
+        src: FiraCode-Retina.ttf
+        dest: /Applications/Renoise.app/Contents/Resources/Skin/Fonts/FiraCode-Retina.ttf
+      tags:
+        - renoise
+    
+    - name: change Config.xml to use our FiraCode font
+      template:
+        src: "{{ item }}.j2"
+        dest: "/Applications/Renoise.app/Contents/Resources/Skin/Fonts/{{ item }}"
+      loop:
+        - Config.xml
+        - PatternConfig.xml
+      tags:
+        - renoise
+  become_user: "{{ user.login }}"
+  become: True
