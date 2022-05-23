@@ -5,6 +5,7 @@
     - vars.yml
   roles:
     - base
+    - dnscrypt_proxy
     - user
     - vim
     - renoise

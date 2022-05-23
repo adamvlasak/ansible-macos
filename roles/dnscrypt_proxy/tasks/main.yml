@@ -1,0 +1,19 @@
+---
+- block:
+    - name: install dnscrypt-proxy
+      homebrew:
+        name: dnscrypt-proxy
+        state: present
+      tags:
+        - dnscrypt_proxy
+
+    - name: configure dnscrypt-proxy
+      template:
+        src: dnscrypt-proxy.toml.j2
+        dest: /opt/homebrew/etc/dnscrypt-proxy.toml
+      notify: restart dnscrypt-proxy
+      tags:
+        - dnscrypt_proxy
+
+  become_user: "{{ user.login }}"
+  become: True
