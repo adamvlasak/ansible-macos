@@ -99,8 +99,8 @@ export ARCHFLAGS="-arch arm64"
 # Force curl to use TLS (see https://curl.se/docs/sslcerts.html)
 export CURL_SSL_BACKEND=secure-transport
 
-alias u="brew update && brew upgrade && brew autoremove && brew cleanup"
-alias la="ls -la"
-alias ll="ls -l"
-alias vim="nvim"
-alias resetdock='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock'
+{% if aliases is defined %}
+{% for item in aliases %}
+alias {{ item.alias }}="{{ item.command }}"
+{% endfor %}
+{% endif %}
