@@ -2,7 +2,7 @@
 - block:
     - name: prepare vimplug directories
       file:
-        path: "{{ lookup('env','HOME') }}/.local/share/nvim/site/autoload"
+        path: "{{ lookup('env','HOME') }}/.vim/autoload"
         state: directory
         recurse: True
       tags:
@@ -11,23 +11,15 @@
     - name: install vim-plug
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: "{{ lookup('env','HOME') }}/.local/share/nvim/site/autoload/plug.vim"
+        dest: "{{ lookup('env','HOME') }}/.vim/autoload/plug.vim"
       when: not ansible_check_mode
-      tags:
-        - vim
-
-    - name: prepare nvim config directory
-      file:
-        path: "{{ lookup('env','HOME') }}/.config/nvim"
-        state: directory
-        recurse: True
       tags:
         - vim
 
     - name: provision .vimrc
       template:
-        src: init.vim.j2
-        dest: "{{ lookup('env','HOME') }}/.config/nvim/init.vim"
+        src: vimrc.j2
+        dest: "{{ lookup('env','HOME') }}/.vimrc"
       tags:
         - vim
         - vimrc
