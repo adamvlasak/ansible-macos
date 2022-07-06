@@ -24,9 +24,3 @@ pf.provision:
 
 renoise.provision:
 	ansible-playbook --diff playbook.yml --tags=renoise
-
-dns.test:
-	ansible-playbook --check --diff playbook.yml --tags=dnscrypt_proxy
-
-dns.provision:
-	ansible-playbook --diff playbook.yml --tags=dnscrypt_proxy

@@ -1,3 +1,0 @@
----
-- name: restart dnscrypt-proxy
-  command: brew services restart dnscrypt-proxy

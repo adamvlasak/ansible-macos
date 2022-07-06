@@ -1,5 +1,0 @@
----
-dnscrypt_proxy:
-  server_names: ["cz.nic", "cloudflare"]
-  bootstrap_resolvers: ["1.1.1.1:53", "1.0.0.1:53"]
-  netprobe_address: "1.1.1.1:53"
