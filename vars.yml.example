@@ -29,6 +29,8 @@ zsh:
     - git
     - colored-man-pages
     - z
+    - tmux
+
 vim:
   colorscheme: desert
   plugins:
