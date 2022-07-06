@@ -10,6 +10,37 @@
       tags:
         - user
 
+    - name: prepare directories
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - "{{ lookup('env','HOME') }}/.config/alacritty"
+        - "{{ lookup('env','HOME') }}/.local/share/mc/skins"
+      tags:
+        - user
+
+    - name: download dracula theme for alacritty
+      get_url:
+        url: https://raw.githubusercontent.com/dracula/alacritty/master/dracula.yml
+        dest: "{{ lookup('env','HOME') }}/.config/alacritty/dracula.yml"
+      tags:
+        - user
+
+    - name: download dracula theme for mc
+      get_url:
+        url: https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini
+        dest: "{{ lookup('env','HOME') }}/.local/share/mc/skins/dracula256.ini"
+      tags:
+        - user
+
+    - name: setup alacritty config
+      template:
+        src: alacritty.yml.j2
+        dest: "{{ lookup('env','HOME') }}/.config/alacritty/alacritty.yml"
+      tags:
+        - user
+
     - name: set font smoothing
       community.general.osx_defaults:
         key: AppleFontSmoothing
