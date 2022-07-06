@@ -99,6 +99,17 @@
             value: false
             state: present
 
+        # enables Home and End keys in some apps
+        - name: setup keybinding directory
+          file:
+            path: "{{ lookup('env','HOME') }}/Library/KeyBindings"
+            state: directory
+
+        - name: setup keybinding dict
+          template:
+            src: DefaultKeyBinding.dict.j2
+            dest: "{{ lookup('env','HOME') }}/Library/KeyBindings/DefaultKeyBinding.dict"
+
       become_user: "{{ user.login }}"
       become: True
       tags:
