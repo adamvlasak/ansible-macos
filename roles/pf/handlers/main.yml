@@ -1,5 +1,0 @@
----
-- name: restart fw
-  community.general.launchd:
-    name: com.apple.pfctl
-    state: restarted
