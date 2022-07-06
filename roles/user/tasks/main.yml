@@ -7,8 +7,6 @@
       loop:
         - zshrc
         - gitconfig
-      tags:
-        - user
 
     - name: prepare directories
       file:
@@ -18,45 +16,60 @@
         - "{{ lookup('env','HOME') }}/.config/alacritty"
         - "{{ lookup('env','HOME') }}/.local/share/mc/skins"
         - "{{ lookup('env','HOME') }}/.tmux/plugins"
-      tags:
-        - user
 
-    - name: download dracula theme for alacritty
-      get_url:
-        url: https://raw.githubusercontent.com/dracula/alacritty/master/dracula.yml
-        dest: "{{ lookup('env','HOME') }}/.config/alacritty/dracula.yml"
-      tags:
-        - user
+    # mc
 
     - name: download dracula theme for mc
       get_url:
         url: https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini
         dest: "{{ lookup('env','HOME') }}/.local/share/mc/skins/dracula256.ini"
-      tags:
-        - user
+
+    # alacritty
+
+    - name: download dracula theme for alacritty
+      get_url:
+        url: https://raw.githubusercontent.com/dracula/alacritty/master/dracula.yml
+        dest: "{{ lookup('env','HOME') }}/.config/alacritty/dracula.yml"
 
     - name: setup alacritty config
       template:
         src: alacritty.yml.j2
         dest: "{{ lookup('env','HOME') }}/.config/alacritty/alacritty.yml"
-      tags:
-        - user
+
+    # tmux
 
     - name: download tmux plugin manager
       git:
-       repo: https://github.com/tmux-plugins/tpm
-       dest: "{{ lookup('env','HOME') }}/.tmux/plugins/tpm"
-       clone: yes
-       update: yes
-      tags:
-        - user
+        repo: https://github.com/tmux-plugins/tpm
+        dest: "{{ lookup('env','HOME') }}/.tmux/plugins/tpm"
+        clone: yes
+        update: yes
 
     - name: setup tmux config
       template:
         src: tmux.conf.j2
         dest: "{{ lookup('env','HOME') }}/.tmux.conf"
-      tags:
-        - user
+
+    # vim
+
+    - name: prepare vimplug directories
+      file:
+        path: "{{ lookup('env','HOME') }}/.vim/autoload"
+        state: directory
+        recurse: True
+
+    - name: install vim-plug
+      get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: "{{ lookup('env','HOME') }}/.vim/autoload/plug.vim"
+      when: not ansible_check_mode
+
+    - name: provision .vimrc
+      template:
+        src: vimrc.j2
+        dest: "{{ lookup('env','HOME') }}/.vimrc"
+
+    # others
 
     - name: set font smoothing
       community.general.osx_defaults:
@@ -65,8 +78,6 @@
         type: int
         value: "{{ font_smoothing }}"
         state: present
-      tags:
-        - user
 
     - name: enable vs code key repeat
       community.general.osx_defaults:
@@ -75,7 +86,8 @@
         type: bool
         value: false
         state: present
-      tags:
-        - user
+
   become_user: "{{ user.login }}"
   become: True
+  tags:
+    - user

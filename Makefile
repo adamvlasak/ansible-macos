@@ -4,12 +4,6 @@ test:
 provision:
 	ansible-playbook --diff playbook.yml
 
-vim.test:
-	ansible-playbook --check --diff playbook.yml --tags=vim
-
-vim.provision:
-	ansible-playbook --diff playbook.yml --tags=vim
-
 user.test:
 	ansible-playbook --check --diff playbook.yml --tags=user
 
