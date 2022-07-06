@@ -4,14 +4,13 @@
       homebrew:
         name: "{{ homebrew.packages }}"
         state: present
-      tags:
-        - base
 
     - name: install homebrew cask packages
       homebrew_cask:
         name: "{{ homebrew.cask_packages }}"
         state: present
-      tags:
-        - base
+
   become_user: "{{ user.login }}"
   become: True
+  tags:
+    - base
