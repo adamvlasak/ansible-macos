@@ -17,6 +17,7 @@
       loop:
         - "{{ lookup('env','HOME') }}/.config/alacritty"
         - "{{ lookup('env','HOME') }}/.local/share/mc/skins"
+        - "{{ lookup('env','HOME') }}/.tmux/plugins"
       tags:
         - user
 
@@ -38,6 +39,22 @@
       template:
         src: alacritty.yml.j2
         dest: "{{ lookup('env','HOME') }}/.config/alacritty/alacritty.yml"
+      tags:
+        - user
+
+    - name: download tmux plugin manager
+      git:
+       repo: https://github.com/tmux-plugins/tpm
+       dest: "{{ lookup('env','HOME') }}/.tmux/plugins/tpm"
+       clone: yes
+       update: yes
+      tags:
+        - user
+
+    - name: setup tmux config
+      template:
+        src: tmux.conf.j2
+        dest: "{{ lookup('env','HOME') }}/.tmux.conf"
       tags:
         - user
 
