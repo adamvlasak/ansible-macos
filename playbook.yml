@@ -30,7 +30,6 @@
             path: "{{ item }}"
             state: directory
           loop:
-            - "{{ lookup('env','HOME') }}/.config/alacritty"
             - "{{ lookup('env','HOME') }}/.local/share/mc/skins"
             - "{{ lookup('env','HOME') }}/.tmux/plugins"
 
@@ -39,17 +38,6 @@
           get_url:
             url: https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini
             dest: "{{ lookup('env','HOME') }}/.local/share/mc/skins/dracula256.ini"
-
-        # alacritty
-        - name: download dracula theme for alacritty
-          get_url:
-            url: https://raw.githubusercontent.com/dracula/alacritty/master/dracula.yml
-            dest: "{{ lookup('env','HOME') }}/.config/alacritty/dracula.yml"
-
-        - name: setup alacritty config
-          template:
-            src: alacritty.yml.j2
-            dest: "{{ lookup('env','HOME') }}/.config/alacritty/alacritty.yml"
 
         # tmux
         - name: download tmux plugin manager
