@@ -8,8 +8,8 @@ set -g @dracula-show-timezone false
 set -g @dracula-day-month true
 set -g @dracula-military-time true
 
-set -g default-terminal {{ term }}
-set -g default-shell {{ shell }}
+set -g default-terminal {{ zsh.term }}
+set -g default-shell {{ zsh.command }}
 
 bind -n End send-key C-e
 bind -n Home send-key C-a

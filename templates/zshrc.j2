@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="{{ path | join(":") }}"
+export PATH="{{ zsh.path | join(":") }}"
 
 # Path to your oh-my-zsh installation.
 export ZSH="{{ lookup('env','HOME') }}/.oh-my-zsh"
@@ -82,7 +82,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-export EDITOR="{{ editor }}"
+export EDITOR="{{ zsh.editor }}"
 
 # Compilation flags
 export ARCHFLAGS="-arch arm64"
@@ -99,8 +99,8 @@ export ARCHFLAGS="-arch arm64"
 # Force curl to use TLS (see https://curl.se/docs/sslcerts.html)
 export CURL_SSL_BACKEND=secure-transport
 
-{% if aliases is defined %}
-{% for item in aliases %}
+{% if zsh.aliases is defined %}
+{% for item in zsh.aliases %}
 alias {{ item.alias }}="{{ item.command }}"
 {% endfor %}
 {% endif %}

@@ -21,7 +21,7 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: {{ term }}
+  TERM: {{ zsh.term }}
 
 window:
   # Window dimensions (changes require restart)
@@ -434,7 +434,7 @@ selection:
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: {{ shell }}
+  program: {{ zsh.command }}
 #  args:
 #    - --login
 
