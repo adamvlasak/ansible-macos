@@ -120,6 +120,8 @@ homebrew:
     - youtube-dl
     - zsh
     - zsh-completions
+    - zsh-autosuggestions
+    - zsh-syntax-highlighting
 
   cask_packages:
     - blackhole-16ch
