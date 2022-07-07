@@ -67,15 +67,6 @@ vim:
     - autocmd FileType yml setlocal ts=2 sw=2
     - autocmd FileType make setlocal ts=2 sw=2 noexpandtab
 
-network:
-  gateway: 192.168.10.1
-  nameserver: 192.168.10.250
-  subnet: 192.168.10.0/24
-  interface: en0
-
-pf:
-  skipped_interfaces: ["lo0"]
-
 homebrew:
   packages:
     - convmv
