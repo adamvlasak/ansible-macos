@@ -79,6 +79,30 @@
             value: "{{ font_smoothing }}"
             state: present
 
+        - name: disable apple press and hold feature
+          community.general.osx_defaults:
+            domain: NSGlobalDomain
+            key: ApplePressAndHoldEnabled
+            type: bool
+            value: false
+            state: present
+
+        - name: enable fast key repeat
+          community.general.osx_defaults:
+            domain: NSGlobalDomain
+            key: KeyRepeat
+            type: int
+            value: 2
+            state: present
+
+        - name: enable fast initial key repeat
+          community.general.osx_defaults:
+            domain: NSGlobalDomain
+            key: InitialKeyRepeat
+            type: int
+            value: 20
+            state: present
+
         - name: enable vs code key repeat
           community.general.osx_defaults:
             domain: com.microsoft.VSCode
