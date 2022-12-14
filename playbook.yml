@@ -3,6 +3,8 @@
   hosts: all
   vars_files:
     - vars.yml
+  vars:
+    - renoise_font: FiraCode-Regular.ttf
   tasks:
     # homebrew
     - block:
@@ -122,8 +124,8 @@
     - block:
         - name: copy FiraCode font file to Renoise app directory
           copy:
-            src: FiraCode-Retina.ttf
-            dest: /Applications/Renoise.app/Contents/Resources/Skin/Fonts/FiraCode-Retina.ttf
+            src: "{{ renoise_font }}"
+            dest: "/Applications/Renoise.app/Contents/Resources/Skin/Fonts/{{ renoise_font }}"
 
         - name: change Config.xml to use our FiraCode font
           template:
