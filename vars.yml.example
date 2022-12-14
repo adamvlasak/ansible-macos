@@ -5,8 +5,6 @@ user:
   full_name: John Doe
   group: staff
 
-font_smoothing: 0
-
 zsh:
   editor: vim
   term: xterm-256color

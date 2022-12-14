@@ -70,15 +70,6 @@
             src: vimrc.j2
             dest: "{{ lookup('env','HOME') }}/.vimrc"
 
-        # others
-        - name: set font smoothing
-          community.general.osx_defaults:
-            key: AppleFontSmoothing
-            host: currentHost
-            type: int
-            value: "{{ font_smoothing }}"
-            state: present
-
         - name: disable apple press and hold feature
           community.general.osx_defaults:
             domain: NSGlobalDomain
