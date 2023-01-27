@@ -1,78 +1,87 @@
 ---
-- name: setup mac
+- name: Setup mac
   hosts: all
   vars_files:
     - vars.yml
   vars:
     - renoise_font: FiraCode-Regular.ttf
   tasks:
-    # homebrew
-    - block:
-        - name: install homebrew packages
-          homebrew:
+    - name: Homebrew
+      become_user: "{{ user.login }}"
+      become: true
+      tags:
+        - homebrew
+      block:
+        - name: Install homebrew packages
+          community.general.homebrew:
             name: "{{ homebrew.packages }}"
             state: present
 
-        - name: install homebrew cask packages
-          homebrew_cask:
+        - name: Install homebrew cask packages
+          community.general.homebrew_cask:
             name: "{{ homebrew.cask_packages }}"
             state: present
-    # user
-    - block:
-        - name: provision dotfiles
-          template:
+
+    - name: User
+      become_user: "{{ user.login }}"
+      become: true
+      tags:
+        - user
+      block:
+        - name: Provision dotfiles
+          ansible.builtin.template:
             src: "{{ item }}.j2"
-            dest: "{{ lookup('env','HOME') }}/.{{ item }}"
+            dest: "{{ lookup('env', 'HOME') }}/.{{ item }}"
           loop:
             - zshrc
             - gitconfig
 
-        - name: prepare directories
-          file:
+        - name: Prepare directories
+          ansible.builtin.file:
             path: "{{ item }}"
             state: directory
           loop:
-            - "{{ lookup('env','HOME') }}/.local/share/mc/skins"
-            - "{{ lookup('env','HOME') }}/.tmux/plugins"
+            - "{{ lookup('env', 'HOME') }}/.local/share/mc/skins"
+            - "{{ lookup('env', 'HOME') }}/.tmux/plugins"
 
         # mc
-        - name: download dracula theme for mc
-          get_url:
+        - name: Download dracula theme for mc
+          ansible.builtin.get_url:
             url: https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini
-            dest: "{{ lookup('env','HOME') }}/.local/share/mc/skins/dracula256.ini"
+            dest: "{{ lookup('env', 'HOME') }}/.local/share/mc/skins/dracula256.ini"
 
         # tmux
-        - name: download tmux plugin manager
-          git:
+        - name: Download tmux plugin manager
+          ansible.builtin.git:
             repo: https://github.com/tmux-plugins/tpm
-            dest: "{{ lookup('env','HOME') }}/.tmux/plugins/tpm"
+            dest: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm"
             clone: yes
             update: yes
 
-        - name: setup tmux config
-          template:
+        - name: Setup tmux config
+          ansible.builtin.template:
             src: tmux.conf.j2
-            dest: "{{ lookup('env','HOME') }}/.tmux.conf"
+            dest: "{{ lookup('env', 'HOME') }}/.tmux.conf"
 
         # vim
-        - name: prepare vimplug directories
-          file:
-            path: "{{ lookup('env','HOME') }}/.vim/autoload"
+        - name: Prepare vimplug directories
+          ansible.builtin.file:
+            path: "{{ lookup('env', 'HOME') }}/.vim/autoload"
             state: directory
             recurse: True
 
-        - name: install vim-plug
-          get_url:
+        - name: Install vim-plug
+          ansible.builtin.get_url:
             url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            dest: "{{ lookup('env','HOME') }}/.vim/autoload/plug.vim"
+            dest: "{{ lookup('env', 'HOME') }}/.vim/autoload/plug.vim"
           when: not ansible_check_mode
 
-        - name: provision .vimrc
-          template:
+        - name: Provision .vimrc
+          ansible.builtin.template:
             src: vimrc.j2
-            dest: "{{ lookup('env','HOME') }}/.vimrc"
+            dest: "{{ lookup('env', 'HOME') }}/.vimrc"
 
-        - name: disable apple press and hold feature
+        - name: Disable apple press and hold feature
           community.general.osx_defaults:
             domain: NSGlobalDomain
             key: ApplePressAndHoldEnabled
@@ -80,7 +89,7 @@
             value: false
             state: present
 
-        - name: enable fast key repeat
+        - name: Enable fast key repeat
           community.general.osx_defaults:
             domain: NSGlobalDomain
             key: KeyRepeat
@@ -88,7 +97,7 @@
             value: 2
             state: present
 
-        - name: enable fast initial key repeat
+        - name: Enable fast initial key repeat
           community.general.osx_defaults:
             domain: NSGlobalDomain
             key: InitialKeyRepeat
@@ -96,7 +105,7 @@
             value: 20
             state: present
 
-        - name: enable vs code key repeat
+        - name: Enable vs code key repeat
           community.general.osx_defaults:
             domain: com.microsoft.VSCode
             key: ApplePressAndHoldEnabled
@@ -105,37 +114,31 @@
             state: present
 
         # enables Home and End keys in some apps
-        - name: setup keybinding directory
-          file:
-            path: "{{ lookup('env','HOME') }}/Library/KeyBindings"
+        - name: Setup keybinding directory
+          ansible.builtin.file:
+            path: "{{ lookup('env', 'HOME') }}/Library/KeyBindings"
             state: directory
 
-        - name: setup keybinding dict
-          template:
+        - name: Setup keybinding dict
+          ansible.builtin.template:
             src: DefaultKeyBinding.dict.j2
-            dest: "{{ lookup('env','HOME') }}/Library/KeyBindings/DefaultKeyBinding.dict"
+            dest: "{{ lookup('env', 'HOME') }}/Library/KeyBindings/DefaultKeyBinding.dict"
 
+    - name: Renoise
       become_user: "{{ user.login }}"
-      become: True
+      become: true
       tags:
-        - user
-
-    # renoise
-    - block:
-        - name: copy FiraCode font file to Renoise app directory
-          copy:
+        - renoise
+      block:
+        - name: Copy FiraCode font file to Renoise app directory
+          ansible.builtin.copy:
             src: "{{ renoise_font }}"
             dest: "/Applications/Renoise.app/Contents/Resources/Skin/Fonts/{{ renoise_font }}"
 
-        - name: change Config.xml to use our FiraCode font
-          template:
+        - name: Change Config.xml to use our FiraCode font
+          ansible.builtin.template:
             src: "{{ item }}.j2"
             dest: "/Applications/Renoise.app/Contents/Resources/Skin/Fonts/{{ item }}"
           loop:
             - Config.xml
             - PatternConfig.xml
-
-      become_user: "{{ user.login }}"
-      become: True
-      tags:
-        - renoise
