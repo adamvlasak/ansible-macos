@@ -28,59 +28,57 @@
       tags:
         - user
       block:
-        - name: Provision dotfiles
-          ansible.builtin.template:
-            src: "{{ item }}.j2"
-            dest: "{{ lookup('env', 'HOME') }}/.{{ item }}"
-          loop:
-            - zshrc
-            - gitconfig
-
         - name: Prepare directories
           ansible.builtin.file:
             path: "{{ item }}"
             state: directory
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0700
           loop:
             - "{{ lookup('env', 'HOME') }}/.local/share/mc/skins"
             - "{{ lookup('env', 'HOME') }}/.tmux/plugins"
+            - "{{ lookup('env', 'HOME') }}/.vim"
+            - "{{ lookup('env', 'HOME') }}/.vim/autoload"
 
-        # mc
         - name: Download dracula theme for mc
           ansible.builtin.get_url:
             url: https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini
             dest: "{{ lookup('env', 'HOME') }}/.local/share/mc/skins/dracula256.ini"
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0600
 
-        # tmux
         - name: Download tmux plugin manager
           ansible.builtin.git:
             repo: https://github.com/tmux-plugins/tpm
             dest: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm"
-            clone: yes
-            update: yes
-
-        - name: Setup tmux config
-          ansible.builtin.template:
-            src: tmux.conf.j2
-            dest: "{{ lookup('env', 'HOME') }}/.tmux.conf"
-
-        # vim
-        - name: Prepare vimplug directories
-          ansible.builtin.file:
-            path: "{{ lookup('env', 'HOME') }}/.vim/autoload"
-            state: directory
-            recurse: True
+            clone: true
+            update: true
 
         - name: Install vim-plug
           ansible.builtin.get_url:
             url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
             dest: "{{ lookup('env', 'HOME') }}/.vim/autoload/plug.vim"
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0500
           when: not ansible_check_mode
 
-        - name: Provision .vimrc
+        - name: Provision dotfiles
           ansible.builtin.template:
-            src: vimrc.j2
-            dest: "{{ lookup('env', 'HOME') }}/.vimrc"
+            src: "{{ item }}.j2"
+            dest: "{{ lookup('env', 'HOME') }}/.{{ item }}"
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0600
+          loop:
+            - zshrc
+            - gitconfig
+            - tmux.conf
+            - vimrc
 
+        # osx defaults
         - name: Disable apple press and hold feature
           community.general.osx_defaults:
             domain: NSGlobalDomain
@@ -118,11 +116,17 @@
           ansible.builtin.file:
             path: "{{ lookup('env', 'HOME') }}/Library/KeyBindings"
             state: directory
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0700
 
         - name: Setup keybinding dict
           ansible.builtin.template:
             src: DefaultKeyBinding.dict.j2
             dest: "{{ lookup('env', 'HOME') }}/Library/KeyBindings/DefaultKeyBinding.dict"
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0600
 
     - name: Renoise
       become_user: "{{ user.login }}"
