@@ -40,6 +40,7 @@
             - "{{ lookup('env', 'HOME') }}/.tmux/plugins"
             - "{{ lookup('env', 'HOME') }}/.vim"
             - "{{ lookup('env', 'HOME') }}/.vim/autoload"
+            - "{{ lookup('env', 'HOME') }}/.vim/plugged"
 
         - name: Download dracula theme for mc
           ansible.builtin.get_url:
@@ -62,7 +63,7 @@
             dest: "{{ lookup('env', 'HOME') }}/.vim/autoload/plug.vim"
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
-            mode: 0500
+            mode: 0600
           when: not ansible_check_mode
 
         - name: Provision dotfiles
