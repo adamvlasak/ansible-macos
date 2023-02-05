@@ -5,6 +5,7 @@
     - vars.yml
   vars:
     - renoise_font: FiraCode-Regular.ttf
+    - user_home: "{{ lookup('env', 'HOME') }}"
   tasks:
     - name: Homebrew
       become_user: "{{ user.login }}"
@@ -36,16 +37,16 @@
             group: "{{ user.group }}"
             mode: 0700
           loop:
-            - "{{ lookup('env', 'HOME') }}/.local/share/mc/skins"
-            - "{{ lookup('env', 'HOME') }}/.tmux/plugins"
-            - "{{ lookup('env', 'HOME') }}/.vim"
-            - "{{ lookup('env', 'HOME') }}/.vim/autoload"
-            - "{{ lookup('env', 'HOME') }}/.vim/plugged"
+            - "{{ user_home }}/.local/share/mc/skins"
+            - "{{ user_home }}/.tmux/plugins"
+            - "{{ user_home }}/.vim"
+            - "{{ user_home }}/.vim/autoload"
+            - "{{ user_home }}/.vim/plugged"
 
         - name: Download dracula theme for mc
           ansible.builtin.get_url:
             url: https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini
-            dest: "{{ lookup('env', 'HOME') }}/.local/share/mc/skins/dracula256.ini"
+            dest: "{{ user_home }}/.local/share/mc/skins/dracula256.ini"
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
             mode: 0600
@@ -53,14 +54,14 @@
         - name: Download tmux plugin manager
           ansible.builtin.git:
             repo: https://github.com/tmux-plugins/tpm
-            dest: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm"
+            dest: "{{ user_home }}/.tmux/plugins/tpm"
             clone: true
             update: true
 
         - name: Install vim-plug
           ansible.builtin.get_url:
             url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            dest: "{{ lookup('env', 'HOME') }}/.vim/autoload/plug.vim"
+            dest: "{{ user_home }}/.vim/autoload/plug.vim"
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
             mode: 0600
@@ -69,7 +70,7 @@
         - name: Provision dotfiles
           ansible.builtin.template:
             src: "{{ item }}.j2"
-            dest: "{{ lookup('env', 'HOME') }}/.{{ item }}"
+            dest: "{{ user_home }}/.{{ item }}"
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
             mode: 0600
@@ -115,7 +116,7 @@
         # enables Home and End keys in some apps
         - name: Setup keybinding directory
           ansible.builtin.file:
-            path: "{{ lookup('env', 'HOME') }}/Library/KeyBindings"
+            path: "{{ user_home }}/Library/KeyBindings"
             state: directory
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
@@ -124,7 +125,7 @@
         - name: Setup keybinding dict
           ansible.builtin.template:
             src: DefaultKeyBinding.dict.j2
-            dest: "{{ lookup('env', 'HOME') }}/Library/KeyBindings/DefaultKeyBinding.dict"
+            dest: "{{ user_home }}/Library/KeyBindings/DefaultKeyBinding.dict"
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
             mode: 0600
