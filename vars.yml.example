@@ -17,11 +17,11 @@ zsh:
     - ./node_modules/.bin
     - ${PATH}
   aliases:
-    - { alias: "u", command: "brew update && brew upgrade && brew autoremove && brew cleanup" }
-    - { alias: "la", command: "ls -la" }
-    - { alias: "ll", command: "ls -l" }
-    - { alias: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
-    - { alias: "renoise", command: "/Applications/Renoise.app/Contents/MacOS/Renoise" }
+    - {alias: "u", command: "brew update && brew upgrade && brew autoremove && brew cleanup"}
+    - {alias: "la", command: "ls -la"}
+    - {alias: "ll", command: "ls -l"}
+    - {alias: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"}
+    - {alias: "flushdns", command: "sudo killall -HUP mDNSResponder"}
   plugins:
     - git
     - colored-man-pages
