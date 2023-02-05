@@ -129,6 +129,19 @@
             group: "{{ user.group }}"
             mode: 0600
 
+    - name: System
+      become_user: root
+      become: true
+      tags:
+        - system
+      block:
+        - name: Enable TouchID for sudo
+          ansible.builtin.lineinfile:
+            path: /etc/pam.d/sudo
+            line: "auth       sufficient     pam_tid.so"
+            search_string: "auth       sufficient     pam_tid.so"
+            insertafter: "# sudo: auth account password session"
+
     - name: Renoise
       become_user: "{{ user.login }}"
       become: true
