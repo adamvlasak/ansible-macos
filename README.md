@@ -5,7 +5,6 @@ This ansible playbook helps with configuration of MacOS.
 ## Features
 
 - installs some homebrew packages
-- configures pf firewall
 - configures shell
 - configures vim
 
@@ -24,11 +23,11 @@ Copy `vars.yml.example` to `vars.yml` and edit to your liking.
 ## Provisioning
 
 ```
-$ sudo make test
+$ make test
 ```
 > to test whole configuration out
 ```
-$ sudo make provision
+$ make provision
 ```
 > to actually provision confiuration
 or see other targets in `Makefile`.
