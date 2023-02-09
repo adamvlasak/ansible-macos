@@ -63,6 +63,15 @@
             - tmux.conf
             - vimrc
 
+        # mc
+        - name: Setup mc
+          ansible.builtin.template:
+            src: mc.ini.j2
+            dest: "{{ user_home }}/.config/mc/ini"
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0600
+
         # osx defaults
         - name: Disable apple press and hold feature
           community.general.osx_defaults:
