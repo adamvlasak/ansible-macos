@@ -4,8 +4,8 @@
   vars_files:
     - vars.yml
   vars:
-    - renoise_font: FiraCode-Regular.ttf
-    - user_home: "{{ lookup('env', 'HOME') }}"
+    renoise_font: FiraCode-Regular.ttf
+    user_home: "{{ lookup('env', 'HOME') }}"
   tasks:
     - name: Homebrew
       become_user: "{{ user.login }}"
