@@ -37,26 +37,9 @@
             group: "{{ user.group }}"
             mode: 0700
           loop:
-            - "{{ user_home }}/.local/share/mc/skins"
-            - "{{ user_home }}/.tmux/plugins"
             - "{{ user_home }}/.vim"
             - "{{ user_home }}/.vim/autoload"
             - "{{ user_home }}/.vim/plugged"
-
-        - name: Download dracula theme for mc
-          ansible.builtin.get_url:
-            url: https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini
-            dest: "{{ user_home }}/.local/share/mc/skins/dracula256.ini"
-            owner: "{{ user.login }}"
-            group: "{{ user.group }}"
-            mode: 0600
-
-        - name: Download tmux plugin manager
-          ansible.builtin.git:
-            repo: https://github.com/tmux-plugins/tpm
-            dest: "{{ user_home }}/.tmux/plugins/tpm"
-            clone: true
-            update: true
 
         - name: Install vim-plug
           ansible.builtin.get_url:
