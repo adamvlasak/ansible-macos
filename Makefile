@@ -2,7 +2,10 @@ lint:
 	yamllint .
 	ansible-lint .
 
-test:
+syntax:
+	ansible-playbook --syntax-check --diff playbook.yml
+
+test: lint syntax
 	ansible-playbook --check --diff playbook.yml
 
 provision:
