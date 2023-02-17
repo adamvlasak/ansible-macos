@@ -136,6 +136,7 @@
             line: "auth       sufficient     pam_tid.so"
             search_string: "auth       sufficient     pam_tid.so"
             insertafter: "# sudo: auth account password session"
+            state: present
 
     - name: Renoise
       become_user: "{{ user.login }}"
