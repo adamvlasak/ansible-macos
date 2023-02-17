@@ -86,7 +86,6 @@ homebrew:
     - midnight-commander
     - minikube
     - moreutils
-    - neovim
     - nmap
     - node
     - pandoc
@@ -101,13 +100,14 @@ homebrew:
     - tig
     - tmux
     - tree
+    - vim
     - w3m
     - watch
     - wget
     - youtube-dl
     - zsh
-    - zsh-completions
     - zsh-autosuggestions
+    - zsh-completions
     - zsh-syntax-highlighting
 
   cask_packages:
