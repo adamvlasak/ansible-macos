@@ -30,9 +30,9 @@ zsh:
 vim:
   colorscheme: desert
   plugins:
+    - itchyny/lightline.vim
     - dense-analysis/ale
     - pearofducks/ansible-vim
-    - vim-airline/vim-airline
     - junegunn/fzf
     - junegunn/fzf.vim
   rc:
@@ -49,6 +49,7 @@ vim:
     - set ttyfast
     - set number
     - set term={{ zsh.term }}
+    - set laststatus=2
     - set ts=4 sw=4 expandtab smarttab
     - autocmd FileType yaml setlocal ts=2 sw=2
     - autocmd FileType yml setlocal ts=2 sw=2
