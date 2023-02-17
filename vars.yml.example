@@ -77,21 +77,17 @@ homebrew:
     - glances
     - go
     - grep
-    - helm
     - hugo
     - jq
-    - kind
     - lame
     - lua
     - make
     - midnight-commander
-    - minikube
     - moreutils
     - nmap
     - node
     - pandoc
     - python
-    - qemu
     - ripgrep
     - rsync
     - shntool
@@ -112,11 +108,8 @@ homebrew:
     - zsh-syntax-highlighting
 
   cask_packages:
-    - blackhole-16ch
     - calibre
     - discord
-    - docker
-    - dotnet-sdk
     - firefox
     - iina
     - iterm2
