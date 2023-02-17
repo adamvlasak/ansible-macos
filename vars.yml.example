@@ -43,10 +43,12 @@ vim:
     - let g:ansible_extra_keywords_highlight = 1
     - let g:ansible_normal_keywords_highlight = 'Constant'
     - let g:ansible_with_keywords_highlight = 'Constant'
-    - map ; :Files<CR>
+    - noremap ; :Files<CR>
+    - noremap \ :%s/\s\+$//e<CR>
     - set nocompatible
     - set noshowmode
     - set ttyfast
+    - set lazyredraw
     - set number
     - set term={{ zsh.term }}
     - set laststatus=2
