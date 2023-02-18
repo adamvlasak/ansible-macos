@@ -1,7 +1,7 @@
 [Midnight-Commander]
 verbose=true
 shell_patterns=true
-auto_save_setup=true
+auto_save_setup=false
 preallocate_space=false
 auto_menu=false
 use_internal_view=true
@@ -83,7 +83,7 @@ editor_backup_extension=~
 editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
-skin=julia256
+skin=dark
 
 [Layout]
 output_lines=0
@@ -92,7 +92,7 @@ top_panel_size=0
 message_visible=false
 keybar_visible=false
 xterm_title=true
-command_prompt=false
+command_prompt=true
 menubar_visible=false
 free_space=true
 horizontal_split=false
@@ -137,7 +137,3 @@ quick_search_mode=2
 select_flags=6
 
 [Panelize]
-Find *.orig after patching=find . -name \\*.orig -print
-Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
-Find rejects after patching=find . -name \\*.rej -print
-Modified git files=git ls-files --modified
