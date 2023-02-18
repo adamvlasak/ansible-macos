@@ -1,5 +1,5 @@
 ---
-- name: Setup mac
+- name: Configure MacOS
   hosts: all
   vars_files:
     - vars.yml
@@ -50,7 +50,7 @@
             mode: 0600
           when: not ansible_check_mode
 
-        - name: Provision dotfiles
+        - name: Configure dotfiles
           ansible.builtin.template:
             src: "{{ item }}.j2"
             dest: "{{ user_home }}/.{{ item }}"
@@ -64,7 +64,7 @@
             - vimrc
 
         # mc
-        - name: Setup mc
+        - name: Configure mc
           ansible.builtin.template:
             src: mc.ini.j2
             dest: "{{ user_home }}/.config/mc/ini"
@@ -106,7 +106,7 @@
             state: present
 
         # enables Home and End keys in some apps
-        - name: Setup keybinding directory
+        - name: Prepare keybinding directory
           ansible.builtin.file:
             path: "{{ user_home }}/Library/KeyBindings"
             state: directory
@@ -114,7 +114,7 @@
             group: "{{ user.group }}"
             mode: 0700
 
-        - name: Setup keybinding dict
+        - name: Configure keybinding dict
           ansible.builtin.template:
             src: DefaultKeyBinding.dict.j2
             dest: "{{ user_home }}/Library/KeyBindings/DefaultKeyBinding.dict"
