@@ -47,6 +47,7 @@ vim:
     - noremap \ :%s/\s\+$//e<CR>
     - set nocompatible
     - set noshowmode
+    - set hlsearch
     - set ttyfast
     - set lazyredraw
     - set number
