@@ -62,6 +62,7 @@
             - gitconfig
             - tmux.conf
             - vimrc
+            - alacritty.yml
 
         # mc
         - name: Configure mc
