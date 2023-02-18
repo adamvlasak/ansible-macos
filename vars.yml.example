@@ -109,11 +109,11 @@ homebrew:
     - zsh-syntax-highlighting
 
   cask_packages:
+    - alacritty
     - calibre
     - discord
     - firefox
     - iina
-    - iterm2
     - keepingyouawake
     - signal
     - suspicious-package
