@@ -41,7 +41,6 @@ mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
 key_bindings:
-  - { key: N,        mods: Command,       command: { program: "{{ brew_prefix }}/bin/alacritty", args: ["-e", "{{ zsh.command }}", "--login"] } }
   - { key: Left,     mods: Alt,           chars: "\x1bb"                     } # one word left
   - { key: Right,    mods: Alt,           chars: "\x1bf"                     } # one word right
   - { key: Home,                          chars: "\x1bOH",  mode: AppCursor  } # Home
@@ -50,6 +49,7 @@ key_bindings:
   - { key: Equals,   mods: Command,       action: IncreaseFontSize           }
   - { key: Minus,    mods: Command,       action: DecreaseFontSize           }
 {% if alacritty.use_tmux != false %}
+  - { key: N,        mods: Command,       command: { program: "{{ brew_prefix }}/bin/alacritty", args: ["-e", "{{ zsh.command }}", "--login"] } }
   - { key: T,        mods: Command,       chars: "\x02\x63"                  } # New tab
   - { key: D,        mods: Command,       chars: "\x02\x25"                  } # Split horizontaly
   - { key: D,        mods: Command|Shift, chars: "\x02\x22"                  } # Split verticaly
