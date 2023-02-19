@@ -48,6 +48,7 @@ key_bindings:
   - { key: Key0,     mods: Command,       action: ResetFontSize              }
   - { key: Equals,   mods: Command,       action: IncreaseFontSize           }
   - { key: Minus,    mods: Command,       action: DecreaseFontSize           }
+  - { key: 36,       mods: Command,       action: ToggleFullscreen           }
 {% if alacritty.use_tmux != false %}
   - { key: N,        mods: Command,       command: { program: "{{ brew_prefix }}/bin/alacritty", args: ["-e", "{{ shell.command }}", "--login"] } }
   - { key: T,        mods: Command,       chars: "\x02\x63"                  } # New tab
