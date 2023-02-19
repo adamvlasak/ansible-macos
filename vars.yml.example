@@ -103,6 +103,7 @@ homebrew:
     - python
     - ripgrep
     - rsync
+    - shellcheck
     - shntool
     - sox
     - sqlite
