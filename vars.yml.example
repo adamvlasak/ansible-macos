@@ -114,7 +114,7 @@ homebrew:
     - w3m
     - watch
     - wget
-    - youtube-dl
+    - yt-dlp
 
   cask_packages:
     - alacritty
