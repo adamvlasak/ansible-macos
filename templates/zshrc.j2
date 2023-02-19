@@ -105,5 +105,9 @@ alias {{ item.alias }}="{{ item.command }}"
 {% endfor %}
 {% endif %}
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source {{ brew_prefix }}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source {{ brew_prefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Enable Home and End keys in zsh
+bindkey "\E[1~" beginning-of-line
+bindkey "\E[4~" end-of-line

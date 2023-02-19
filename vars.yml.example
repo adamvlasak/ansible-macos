@@ -5,14 +5,16 @@ user:
   full_name: John Doe
   group: staff
 
+brew_prefix: /opt/homebrew
+
 zsh:
   editor: vim
   term: xterm-256color
-  command: /opt/homebrew/bin/zsh
+  command: "{{ brew_prefix }}/bin/zsh"
   path:
-    - /opt/homebrew/bin
-    - /opt/homebrew/sbin
-    - /opt/homebrew/opt/curl/bin
+    - "{{ brew_prefix }}/bin"
+    - "{{ brew_prefix }}/sbin"
+    - "{{ brew_prefix }}/opt/curl/bin"
     - ./node_modules/.bin
     - ${PATH}
   aliases:
@@ -26,6 +28,13 @@ zsh:
     - colored-man-pages
     - z
     - tmux
+
+alacritty:
+  use_tmux: false
+  font_size: "13.0"
+  font: "Fira Code"
+  cols: 60
+  lines: 120
 
 vim:
   colorscheme: desert
@@ -45,14 +54,17 @@ vim:
     - let g:ansible_with_keywords_highlight = 'Constant'
     - noremap ; :Files<CR>
     - noremap \ :%s/\s\+$//e<CR>
-    - set nocompatible
-    - set noshowmode
-    - set hlsearch
+    - set term={{ zsh.term }}
     - set ttyfast
     - set lazyredraw
-    - set number
-    - set term={{ zsh.term }}
+    - set nocompatible
+    - set noshowmode
+    - set noerrorbells
     - set laststatus=2
+    - set hlsearch
+    - set incsearch
+    - set number
+    - set relativenumber
     - set backspace=indent,eol,start
     - set ts=4 sw=4 expandtab smarttab
     - autocmd FileType yaml setlocal ts=2 sw=2
