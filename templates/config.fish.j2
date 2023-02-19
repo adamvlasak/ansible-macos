@@ -1,0 +1,17 @@
+set fish_greeting
+
+{% for var in shell.vars %}
+set -U {{ var }}
+{% endfor %}
+
+{% for path in shell.path %}
+fish_add_path "{{ path }}"
+{% endfor %}
+
+{% for alias in shell.aliases %}
+abbr --add {{ alias.name }} "{{ alias.command }}"
+{% endfor %}
+
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end

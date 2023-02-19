@@ -37,6 +37,9 @@
             group: "{{ user.group }}"
             mode: 0700
           loop:
+            - "{{ user_home }}/.config"
+            - "{{ user_home }}/.config/fish"
+            - "{{ user_home }}/.config/mc"
             - "{{ user_home }}/.vim"
             - "{{ user_home }}/.vim/autoload"
             - "{{ user_home }}/.vim/plugged"
@@ -58,11 +61,18 @@
             group: "{{ user.group }}"
             mode: 0600
           loop:
-            - zshrc
             - gitconfig
             - tmux.conf
             - vimrc
             - alacritty.yml
+
+        - name: Configure fish shell
+          ansible.builtin.template:
+            src: config.fish.j2
+            dest: "{{ user_home }}/.config/fish/config.fish"
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0600
 
         # mc
         - name: Configure mc
@@ -138,6 +148,11 @@
             search_string: "auth       sufficient     pam_tid.so"
             insertafter: "# sudo: auth account password session"
             state: present
+
+        - name: Change user's shell
+          ansible.builtin.user:
+            name: "{{ user.login }}"
+            shell: "{{ shell.command }}"
 
     - name: Renoise
       become_user: "{{ user.login }}"

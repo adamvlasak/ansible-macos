@@ -1,6 +1,6 @@
 ---
 env:
-  TERM: {{ zsh.term }}
+  TERM: {{ shell.term }}
 
 window:
   dimensions:
@@ -49,7 +49,7 @@ key_bindings:
   - { key: Equals,   mods: Command,       action: IncreaseFontSize           }
   - { key: Minus,    mods: Command,       action: DecreaseFontSize           }
 {% if alacritty.use_tmux != false %}
-  - { key: N,        mods: Command,       command: { program: "{{ brew_prefix }}/bin/alacritty", args: ["-e", "{{ zsh.command }}", "--login"] } }
+  - { key: N,        mods: Command,       command: { program: "{{ brew_prefix }}/bin/alacritty", args: ["-e", "{{ shell.command }}", "--login"] } }
   - { key: T,        mods: Command,       chars: "\x02\x63"                  } # New tab
   - { key: D,        mods: Command,       chars: "\x02\x25"                  } # Split horizontaly
   - { key: D,        mods: Command|Shift, chars: "\x02\x22"                  } # Split verticaly
@@ -83,7 +83,7 @@ shell:
 {% else %}
 
 shell:
-  program: {{ brew_prefix }}/bin/zsh
+  program: {{ shell.command }}
   args:
     - --login
 {% endif %}

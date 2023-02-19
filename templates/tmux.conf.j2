@@ -1,6 +1,6 @@
-set -g default-shell {{ zsh.command }}
+set -g default-shell {{ shell.command }}
 
-set-option -ga terminal-overrides ",{{ zsh.term }}:Tc"
+set-option -ga terminal-overrides ",{{ shell.term }}:Tc"
 set -g default-terminal "screen-256color"
 
 set -g base-index 1
