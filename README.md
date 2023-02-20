@@ -14,6 +14,12 @@ Install `ansible` using `brew`:
 ```
 brew install ansible
 ```
+or using python virtualenv:
+```
+$ python3 -m venv .env/
+$ . .env/bin/activate
+$ pip install -r requirements.txt
+```
 Create a file called `hosts` and define ansible connection:
 ```
 echo "localhost ansible_connection=local" > hosts
