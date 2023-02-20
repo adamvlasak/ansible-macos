@@ -48,6 +48,9 @@ key_bindings:
   - { key: Key0,     mods: Command,       action: ResetFontSize              }
   - { key: Equals,   mods: Command,       action: IncreaseFontSize           }
   - { key: Minus,    mods: Command,       action: DecreaseFontSize           }
+  - { key: Period,   mods: Alt,           chars: "\e."                       }
+  - { key: Insert,   mods: Control,       action: Copy                       }
+  - { key: Insert,   mods: Shift,         action: Paste                      }
   - { key: 36,       mods: Command,       action: ToggleFullscreen           }
 {% if alacritty.use_tmux != false %}
   - { key: N,        mods: Command,       command: { program: "{{ brew_prefix }}/bin/alacritty", args: ["-e", "{{ shell.command }}", "--login"] } }
