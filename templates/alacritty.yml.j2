@@ -53,7 +53,7 @@ key_bindings:
   - { key: Insert,   mods: Shift,         action: Paste                      }
   - { key: 36,       mods: Command,       action: ToggleFullscreen           }
 {% if alacritty.use_tmux != false %}
-  - { key: N,        mods: Command,       command: { program: "{{ brew_prefix }}/bin/alacritty", args: ["-e", "{{ shell.command }}", "--login"] } }
+  - { key: N,        mods: Command,       command: { program: "{{ brew_prefix }}/bin/alacritty", args: ["-e", "{{ shell.interactive }}", "--login"] } }
   - { key: T,        mods: Command,       chars: "\x02\x63"                  } # New tab
   - { key: D,        mods: Command,       chars: "\x02\x25"                  } # Split horizontaly
   - { key: D,        mods: Command|Shift, chars: "\x02\x22"                  } # Split verticaly
@@ -87,7 +87,7 @@ shell:
 {% else %}
 
 shell:
-  program: {{ shell.command }}
+  program: {{ shell.interactive }}
   args:
     - --login
 {% endif %}

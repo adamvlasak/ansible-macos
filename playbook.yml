@@ -152,7 +152,7 @@
         - name: Change user's shell
           ansible.builtin.user:
             name: "{{ user.login }}"
-            shell: "{{ shell.command }}"
+            shell: "{{ shell.default }}"
 
     - name: Renoise
       become_user: "{{ user.login }}"

@@ -1,4 +1,4 @@
-set -g default-shell {{ shell.command }}
+set -g default-shell {{ shell.interactive }}
 
 set-option -ga terminal-overrides ",{{ shell.term }}:Tc"
 set -g default-terminal "screen-256color"
