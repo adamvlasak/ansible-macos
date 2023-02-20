@@ -8,15 +8,14 @@ user:
 brew_prefix: /opt/homebrew
 
 shell:
-  editor: vim
   term: xterm-256color
   command: "{{ brew_prefix }}/bin/fish"
   vars:
-    - "LANG en_US.UTF-8"
-    - "EDITOR vim"
-    - "PAGER less"
-    - 'ARCHFLAGS "-arch arm64"'
-    - "CURL_SSL_BACKEND secure-transport"
+    - LANG: "en_US.UTF-8"
+    - PAGER: less
+    - EDITOR: vim
+    - ARCHFLAGS: "-arch arm64"
+    - CURL_SSL_BACKEND: secure-transport
   path:
     - "{{ brew_prefix }}/bin"
     - "{{ brew_prefix }}/sbin"
