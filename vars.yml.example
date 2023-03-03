@@ -35,7 +35,6 @@ alacritty:
   lines: 120
 
 vim:
-  colorscheme: desert
   plugins:
     - itchyny/lightline.vim
     - dense-analysis/ale
@@ -52,8 +51,8 @@ vim:
     - let g:ansible_with_keywords_highlight = 'Constant'
     - noremap ; :Files<CR>
     - noremap \ :%s/\s\+$//e<CR>
-    - set term={{ shell.term }}
-    - set t_Co=8
+    - colorscheme default
+    - set background=dark
     - set ttyfast
     - set lazyredraw
     - set nocompatible
