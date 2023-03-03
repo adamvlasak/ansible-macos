@@ -52,7 +52,7 @@ vim:
     - let g:ansible_with_keywords_highlight = 'Constant'
     - noremap ; :Files<CR>
     - noremap \ :%s/\s\+$//e<CR>
-    - set term={{ zsh.term }}
+    - set t_Co=8
     - set ttyfast
     - set lazyredraw
     - set nocompatible
