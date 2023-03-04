@@ -1,7 +1,7 @@
 set fish_greeting
 
 {% for var in shell.vars %}
-set -U {{ var.keys() | zip(var.values()) | map('join', " ") | join(" ") }}
+set -gx {{ var.keys() | zip(var.values()) | map('join', " ") | join(" ") }}
 {% endfor %}
 
 {% for path in shell.path %}
