@@ -164,11 +164,17 @@
           ansible.builtin.copy:
             src: "{{ renoise_font }}"
             dest: "/Applications/Renoise.app/Contents/Resources/Skin/Fonts/{{ renoise_font }}"
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0644
 
         - name: Change Config.xml to use our FiraCode font
           ansible.builtin.template:
             src: "{{ item }}.j2"
             dest: "/Applications/Renoise.app/Contents/Resources/Skin/Fonts/{{ item }}"
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0644
           loop:
             - Config.xml
             - PatternConfig.xml

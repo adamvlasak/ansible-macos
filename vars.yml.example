@@ -23,9 +23,9 @@ shell:
     - "{{ brew_prefix }}/opt/curl/bin"
     - ./node_modules/.bin
   aliases:
-    - {name: "u", command: "brew update && brew upgrade && brew autoremove && brew cleanup"}
-    - {name: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"}
-    - {name: "flushdns", command: "sudo killall -HUP mDNSResponder"}
+    - { name: "u", command: "brew update && brew upgrade && brew autoremove && brew cleanup" }
+    - { name: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
+    - { name: "flushdns", command: "sudo killall -HUP mDNSResponder" }
 
 alacritty:
   use_tmux: false
