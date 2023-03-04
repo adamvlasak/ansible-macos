@@ -33,6 +33,8 @@ alacritty:
   font: "Fira Code"
   cols: 60
   lines: 120
+  opacity: 1
+  theme: "ayu_dark"
 
 vim:
   plugins:
