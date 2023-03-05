@@ -6,6 +6,8 @@
   vars:
     renoise_font: FiraCode-Regular.ttf
     user_home: "{{ lookup('env', 'HOME') }}"
+    config_dir: "{{ user_home }}/.config"
+    vim_dir: "{{ user_home }}/.vim"
   tasks:
     - name: Homebrew
       become_user: "{{ user.login }}"
@@ -37,17 +39,17 @@
             group: "{{ user.group }}"
             mode: 0700
           loop:
-            - "{{ user_home }}/.config"
-            - "{{ user_home }}/.config/fish"
-            - "{{ user_home }}/.config/mc"
-            - "{{ user_home }}/.vim"
-            - "{{ user_home }}/.vim/autoload"
-            - "{{ user_home }}/.vim/plugged"
+            - "{{ config_dir }}"
+            - "{{ config_dir }}/fish"
+            - "{{ config_dir }}/mc"
+            - "{{ vim_dir }}"
+            - "{{ vim_dir }}/autoload"
+            - "{{ vim_dir }}/plugged"
 
         - name: Install vim-plug
           ansible.builtin.get_url:
             url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            dest: "{{ user_home }}/.vim/autoload/plug.vim"
+            dest: "{{ vim_dir }}/autoload/plug.vim"
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
             mode: 0600
@@ -65,33 +67,22 @@
             - tmux.conf
             - vimrc
 
-        - name: Configure alacritty
+        - name: Configure kitty
           tags:
-            - alacritty
+            - kitty
           block:
-            - name: Prepare alacritty directories
+            - name: Prepare kitty directories
               ansible.builtin.file:
-                path: "{{ user_home }}/{{ item }}"
+                path: "{{ config_dir }}/kitty"
                 state: directory
                 owner: "{{ user.login }}"
                 group: "{{ user.group }}"
                 mode: 0700
-              loop:
-                - /.config/alacritty
-                - /.config/alacritty/themes
 
-            - name: Download theme from gitlab
-              ansible.builtin.get_url:
-                url: "https://raw.githubusercontent.com/alacritty/alacritty-theme/master/themes/{{ alacritty.theme }}.yaml"
-                dest: "{{ user_home }}/.config/alacritty/themes/{{ alacritty.theme }}.yml"
-                owner: "{{ user.login }}"
-                group: "{{ user.group }}"
-                mode: 0600
-
-            - name: Configure alacritty
+            - name: Configure kitty
               ansible.builtin.template:
-                src: alacritty.yml.j2
-                dest: "{{ user_home }}/.config/alacritty/alacritty.yml"
+                src: kitty.conf.j2
+                dest: "{{ config_dir }}/kitty/kitty.conf"
                 owner: "{{ user.login }}"
                 group: "{{ user.group }}"
                 mode: 0600
@@ -99,7 +90,7 @@
         - name: Configure fish shell
           ansible.builtin.template:
             src: config.fish.j2
-            dest: "{{ user_home }}/.config/fish/config.fish"
+            dest: "{{ config_dir }}/fish/config.fish"
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
             mode: 0600
@@ -108,7 +99,7 @@
         - name: Configure mc
           ansible.builtin.template:
             src: mc.ini.j2
-            dest: "{{ user_home }}/.config/mc/ini"
+            dest: "{{ config_dir }}/mc/ini"
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
             mode: 0600
