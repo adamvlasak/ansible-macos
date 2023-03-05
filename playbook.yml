@@ -113,6 +113,14 @@
             value: false
             state: present
 
+        - name: Disable font smoothing
+          community.general.osx_defaults:
+            key: AppleFontSmoothing
+            host: currentHost
+            type: int
+            value: 0
+            state: present
+
         - name: Enable fast key repeat
           community.general.osx_defaults:
             domain: NSGlobalDomain
