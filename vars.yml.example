@@ -27,14 +27,18 @@ shell:
     - { name: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
     - { name: "flushdns", command: "sudo killall -HUP mDNSResponder" }
 
-alacritty:
-  use_tmux: false
-  font_size: "13.0"
+kitty:
   font: "Fira Code"
-  cols: 60
-  lines: 120
-  opacity: 1
-  theme: "ayu_dark"
+  font_size: "13.0"
+  font_baseline: 1
+  window_padding: 5
+  tab_bar_style: powerline
+  key_mappings:
+    - map cmd+d new_window_with_cwd
+    - map cmd+shift+w close_tab
+    - map cmd+w close_window
+    - map alt+left send_text all \x1b\x62
+    - map alt+right send_text all \x1b\x66
 
 vim:
   plugins:
@@ -119,12 +123,12 @@ homebrew:
     - yt-dlp
 
   cask_packages:
-    - alacritty
     - calibre
     - discord
     - firefox
     - iina
     - keepingyouawake
+    - kitty
     - signal
     - suspicious-package
     - the-unarchiver

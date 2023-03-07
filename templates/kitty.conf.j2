@@ -1,0 +1,44 @@
+shell {{ shell.interactive }} --login
+shell_integration no-cursor
+term {{ shell.term }}
+
+font_family      {{ kitty.font }}
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size {{ kitty.font_size }}
+modify_font baseline {{ kitty.font_baseline }}
+
+tab_bar_style {{ kitty.tab_bar_style }}
+window_padding_width {{ kitty.window_padding }}
+copy_on_select yes
+cursor_shape block
+enable_audio_bell no
+macos_quit_when_last_window_closed yes
+macos_option_as_alt yes
+
+background #0e1419
+foreground #e5e1cf
+selection_background #393e42
+selection_foreground #e5e1cf
+cursor #f19618
+color0 #000000
+color1 #ff3333
+color2 #b8cc52
+color3 #e6c446
+color4 #36a3d9
+color5 #f07078
+color6 #95e5cb
+color7 #ffffff
+color8 #323232
+color9 #ff6565
+color10 #e9fe83
+color11 #fff778
+color12 #68d4ff
+color13 #ffa3aa
+color14 #c7fffc
+color15 #ffffff
+
+{% for key_mapping in kitty.key_mappings %}
+{{ key_mapping }}
+{% endfor %}
