@@ -55,7 +55,7 @@ vim:
     - let g:ansible_normal_keywords_highlight = 'Constant'
     - let g:ansible_with_keywords_highlight = 'Constant'
     - noremap ; :Files<CR>
-    - noremap <leader> \ :%s/\s\+$//e<CR>
+    - noremap <leader>t :%s/\s\+$//e<CR>
     - colorscheme default
     - set background=dark
     - highlight VertSplit cterm=NONE
