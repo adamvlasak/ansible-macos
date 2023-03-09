@@ -92,6 +92,7 @@ homebrew:
     - flac
     - fzf
     - gawk
+    - gh
     - git
     - glances
     - go
