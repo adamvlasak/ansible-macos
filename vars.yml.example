@@ -59,6 +59,7 @@ vim:
     - noremap \ :%s/\s\+$//e<CR>
     - colorscheme default
     - set background=dark
+    - highlight VertSplit cterm=NONE
     - set ttyfast
     - set lazyredraw
     - set nocompatible
