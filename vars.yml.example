@@ -21,7 +21,6 @@ shell:
     - "{{ brew_prefix }}/bin"
     - "{{ brew_prefix }}/sbin"
     - "{{ brew_prefix }}/opt/curl/bin"
-    - ./node_modules/.bin
   aliases:
     - { name: "u", command: "brew update && brew upgrade && brew autoremove && brew cleanup" }
     - { name: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
@@ -31,7 +30,7 @@ kitty:
   font: "Fira Code"
   font_size: "13.0"
   font_baseline: 1
-  window_padding: 5
+  window_padding: 1
   tab_bar_style: powerline
   key_mappings:
     - map cmd+d new_window_with_cwd
@@ -56,7 +55,7 @@ vim:
     - let g:ansible_normal_keywords_highlight = 'Constant'
     - let g:ansible_with_keywords_highlight = 'Constant'
     - noremap ; :Files<CR>
-    - noremap \ :%s/\s\+$//e<CR>
+    - noremap <leader> \ :%s/\s\+$//e<CR>
     - colorscheme default
     - set background=dark
     - highlight VertSplit cterm=NONE
