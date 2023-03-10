@@ -56,6 +56,8 @@ vim:
     - let g:ansible_with_keywords_highlight = 'Constant'
     - noremap ; :Files<CR>
     - noremap <leader>t :%s/\s\+$//e<CR>
+    - noremap <leader>d :windo diffthis<CR>
+    - noremap <leader>D :windo diffoff<CR>
     - colorscheme default
     - set background=dark
     - hi VertSplit    cterm=NONE
