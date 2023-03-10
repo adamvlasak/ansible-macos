@@ -58,7 +58,11 @@ vim:
     - noremap <leader>t :%s/\s\+$//e<CR>
     - colorscheme default
     - set background=dark
-    - highlight VertSplit cterm=NONE
+    - hi VertSplit    cterm=NONE
+    - hi DiffAdd      ctermfg=Black     ctermbg=DarkGreen
+    - hi DiffChange   ctermfg=NONE      ctermbg=NONE
+    - hi DiffDelete   ctermfg=NONE      ctermbg=DarkRed
+    - hi DiffText     ctermfg=White     ctermbg=DarkBlue
     - set ttyfast
     - set lazyredraw
     - set nocompatible
