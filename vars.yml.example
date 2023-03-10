@@ -65,6 +65,8 @@ vim:
     - hi DiffChange   ctermfg=NONE      ctermbg=NONE
     - hi DiffDelete   ctermfg=NONE      ctermbg=DarkRed
     - hi DiffText     ctermfg=White     ctermbg=DarkBlue
+    - set splitbelow
+    - set splitright
     - set ttyfast
     - set lazyredraw
     - set nocompatible
