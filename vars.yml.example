@@ -58,6 +58,8 @@ vim:
     - noremap <leader>t :%s/\s\+$//e<CR>
     - noremap <leader>d :windo diffthis<CR>
     - noremap <leader>D :windo diffoff<CR>
+    - syntax on
+    - filetype plugin on
     - colorscheme default
     - set background=dark
     - hi VertSplit    cterm=NONE
@@ -65,6 +67,8 @@ vim:
     - hi DiffChange   ctermfg=NONE      ctermbg=NONE
     - hi DiffDelete   ctermfg=NONE      ctermbg=DarkRed
     - hi DiffText     ctermfg=White     ctermbg=DarkBlue
+    - set wildmenu
+    - set path=**
     - set splitbelow
     - set splitright
     - set ttyfast
