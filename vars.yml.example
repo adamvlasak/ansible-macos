@@ -4,13 +4,13 @@ user:
   email: john@doe.org
   full_name: John Doe
   group: staff
+  touchid: false
 
 brew_prefix: /opt/homebrew
 
 shell:
   term: xterm-256color
-  default: /bin/zsh
-  interactive: "{{ brew_prefix }}/bin/fish"
+  command: "{{ brew_prefix }}/bin/fish"
   vars:
     - LANG: "en_US.UTF-8"
     - PAGER: less
@@ -27,6 +27,7 @@ shell:
     - { name: "flushdns", command: "sudo killall -HUP mDNSResponder" }
 
 kitty:
+  enabled: true
   font: "Fira Code"
   font_size: "13.0"
   font_baseline: 1

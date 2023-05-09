@@ -68,6 +68,7 @@
             - vimrc
 
         - name: Configure kitty
+          when: kitty.enabled is defined and kitty.enabled is true
           tags:
             - kitty
           block:
@@ -177,33 +178,4 @@
             search_string: "auth       sufficient     pam_tid.so"
             insertafter: "# sudo: auth account password session"
             state: present
-
-        - name: Change user's shell
-          ansible.builtin.user:
-            name: "{{ user.login }}"
-            shell: "{{ shell.default }}"
-
-    - name: Renoise
-      become_user: "{{ user.login }}"
-      become: true
-      tags:
-        - renoise
-      block:
-        - name: Copy FiraCode font file to Renoise app directory
-          ansible.builtin.copy:
-            src: "{{ renoise_font }}"
-            dest: "/Applications/Renoise.app/Contents/Resources/Skin/Fonts/{{ renoise_font }}"
-            owner: "{{ user.login }}"
-            group: "{{ user.group }}"
-            mode: 0644
-
-        - name: Change Config.xml to use our FiraCode font
-          ansible.builtin.template:
-            src: "{{ item }}.j2"
-            dest: "/Applications/Renoise.app/Contents/Resources/Skin/Fonts/{{ item }}"
-            owner: "{{ user.login }}"
-            group: "{{ user.group }}"
-            mode: 0644
-          loop:
-            - Config.xml
-            - PatternConfig.xml
+          when: user.touchid is defined and user.touchid is true
