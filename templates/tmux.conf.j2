@@ -1,9 +1,31 @@
+# {{ ansible_managed }}
+
 set -g default-shell {{ shell.command }}
-set-option -sa terminal-overrides ",{{ shell.term }}:Tc"
+set-option -sa terminal-overrides ",xterm*:Tc"
 
 set -g base-index 1
 setw -g pane-base-index 1
 set -g renumber-windows on
 
+# ---
+
 unbind r
-bind r source-file ~/.tmux.conf \; display "Reloaded!"
+unbind m
+unbind M
+
+# ---
+
+# Toggle mouse on
+bind-key M \
+    set-option -g mouse on \;\
+    display-message 'Mouse: ON'
+
+# Toggle mouse off
+bind-key m \
+    set-option -g mouse off \;\
+    display-message 'Mouse: OFF'
+
+# Bind prefix + r to reload tmux.conf
+bind-key r \
+    source-file ~/.tmux.conf \;\
+    display-message "Reloaded!"
