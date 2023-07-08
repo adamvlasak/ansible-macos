@@ -67,6 +67,38 @@
             - tmux.conf
             - vimrc
 
+        - name: Configure alacritty
+          tags:
+            - alacritty
+          when: alacritty.enabled is defined and alacritty.enabled is true
+          block:
+            - name: Prepare alacritty directories
+              ansible.builtin.file:
+                path: "{{ user_home }}/{{ item }}"
+                state: directory
+                owner: "{{ user.login }}"
+                group: "{{ user.group }}"
+                mode: 0700
+              loop:
+                - /.config/alacritty
+                - /.config/alacritty/themes
+
+            - name: Download theme from gitlab
+              ansible.builtin.get_url:
+                url: "https://raw.githubusercontent.com/alacritty/alacritty-theme/master/themes/{{ alacritty.theme }}.yaml"
+                dest: "{{ user_home }}/.config/alacritty/themes/{{ alacritty.theme }}.yml"
+                owner: "{{ user.login }}"
+                group: "{{ user.group }}"
+                mode: 0600
+
+            - name: Configure alacritty
+              ansible.builtin.template:
+                src: alacritty.yml.j2
+                dest: "{{ user_home }}/.config/alacritty/alacritty.yml"
+                owner: "{{ user.login }}"
+                group: "{{ user.group }}"
+                mode: 0600
+
         - name: Configure kitty
           when: kitty.enabled is defined and kitty.enabled is true
           tags:

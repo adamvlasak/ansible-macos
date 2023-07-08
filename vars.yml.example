@@ -26,6 +26,16 @@ shell:
     - { name: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
     - { name: "flushdns", command: "sudo killall -HUP mDNSResponder" }
 
+alacritty:
+  enabled: true
+  use_tmux: true
+  font_size: "13.0"
+  font: "Fira Code"
+  cols: 120
+  lines: 60
+  opacity: 1
+  theme: "ayu_dark"
+
 kitty:
   enabled: true
   font: "Fira Code"
