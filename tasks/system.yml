@@ -1,0 +1,17 @@
+---
+- name: System
+  become_method: ansible.builtin.sudo
+  become_flags: '-i'
+  become_user: root
+  become: true
+  tags:
+    - system
+  block:
+    - name: Enable TouchID for sudo
+      ansible.builtin.lineinfile:
+        path: /etc/pam.d/sudo
+        line: "auth       sufficient     pam_tid.so"
+        search_string: "auth       sufficient     pam_tid.so"
+        insertafter: "# sudo: auth account password session"
+        state: present
+      when: user.touchid is defined and user.touchid is true

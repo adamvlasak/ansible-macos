@@ -1,0 +1,31 @@
+---
+- name: Vim tasks
+  block:
+    - name: Prepare vim directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0700
+      loop:
+        - "{{ vim_dir }}"
+        - "{{ vim_dir }}/autoload"
+        - "{{ vim_dir }}/plugged"
+
+    - name: Install vim-plug
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: "{{ vim_dir }}/autoload/plug.vim"
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0600
+      when: not ansible_check_mode
+
+    - name: Configure vimrc
+      ansible.builtin.template:
+        src: "vimrc.j2"
+        dest: "{{ user_home }}/.vimrc"
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0600

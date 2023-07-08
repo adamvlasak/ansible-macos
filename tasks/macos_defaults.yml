@@ -1,0 +1,62 @@
+---
+- name: MacOS defaults override
+  become_user: "{{ user.login }}"
+  become: true
+  tags:
+    - macos_defaults
+  block:
+    - name: Disable apple press and hold feature
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: ApplePressAndHoldEnabled
+        type: bool
+        value: false
+        state: present
+
+    - name: Disable font smoothing
+      community.general.osx_defaults:
+        key: AppleFontSmoothing
+        host: currentHost
+        type: int
+        value: 0
+        state: present
+
+    - name: Enable fast key repeat
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: KeyRepeat
+        type: int
+        value: 2
+        state: present
+
+    - name: Enable fast initial key repeat
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: InitialKeyRepeat
+        type: int
+        value: 20
+        state: present
+
+    - name: Enable vs code key repeat
+      community.general.osx_defaults:
+        domain: com.microsoft.VSCode
+        key: ApplePressAndHoldEnabled
+        type: bool
+        value: false
+        state: present
+
+    - name: Prepare keybinding directory
+      ansible.builtin.file:
+        path: "{{ user_home }}/Library/KeyBindings"
+        state: directory
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0700
+
+    - name: Configure keybinding dict
+      ansible.builtin.template:
+        src: DefaultKeyBinding.dict.j2
+        dest: "{{ user_home }}/Library/KeyBindings/DefaultKeyBinding.dict"
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0600
