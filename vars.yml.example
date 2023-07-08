@@ -31,6 +31,7 @@ alacritty:
   use_tmux: true
   font_size: "13.0"
   font: "Fira Code"
+  line_spacing: 5
   cols: 120
   lines: 60
   opacity: 1
