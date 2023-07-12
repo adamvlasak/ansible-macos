@@ -158,3 +158,10 @@ homebrew:
     - suspicious-package
     - the-unarchiver
     - visual-studio-code
+
+pf:
+  enabled: true
+  skipped_interfaces: ["lo0"]
+  allowed_subnets:
+    - { interface: "en0", subnet: "192.168.10.0/24" }
+  interface: en0

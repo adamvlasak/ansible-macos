@@ -21,5 +21,15 @@
     - name: Import macos_defaults.yml tasks
       ansible.builtin.import_tasks: tasks/macos_defaults.yml
 
+    - name: Import firewall.yml tasks
+      ansible.builtin.import_tasks: tasks/firewall.yml
+
     - name: Import system.yml tasks
       ansible.builtin.import_tasks: tasks/system.yml
+
+  handlers:
+    - name: restart fw
+      ansible.builtin.shell: "pfctl -d && pfctl -F all -E -f /etc/pf.conf"
+      become: yes
+      tags:
+        - pf
