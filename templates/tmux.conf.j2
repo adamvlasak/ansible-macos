@@ -1,6 +1,7 @@
 # {{ ansible_managed }}
 
-set -g default-shell {{ shell.command }}
+set -g default-shell "{{ shell.command }}"
+set -g default-terminal "screen-256color"
 set-option -sa terminal-overrides ",xterm*:Tc"
 
 set -g base-index 1
