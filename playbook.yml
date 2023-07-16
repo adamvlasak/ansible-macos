@@ -42,6 +42,6 @@
   handlers:
     - name: restart fw
       ansible.builtin.shell: "pfctl -d && pfctl -F all -E -f /etc/pf.conf"
-      become: yes
+      become: true
       tags:
         - pf
