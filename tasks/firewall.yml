@@ -5,8 +5,6 @@
   become_user: root
   become: true
   when: pf.enabled
-  tags:
-    - pf
   block:
     - name: provision /etc/pf.conf
       template:

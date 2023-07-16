@@ -2,8 +2,6 @@
 - name: Homebrew
   become_user: "{{ user.login }}"
   become: true
-  tags:
-    - homebrew
   block:
     - name: Install homebrew packages
       community.general.homebrew:

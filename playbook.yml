@@ -11,21 +11,33 @@
   tasks:
     - name: Import homebrew.yml tasks
       ansible.builtin.import_tasks: tasks/homebrew.yml
-
-    - name: Import vim.yml tasks
-      ansible.builtin.import_tasks: tasks/vim.yml
+      tags:
+        - homebrew
 
     - name: Import terminals.yml tasks
       ansible.builtin.import_tasks: tasks/terminals.yml
+      tags:
+        - terminal
+
+    - name: Import vim.yml tasks
+      ansible.builtin.import_tasks: tasks/vim.yml
+      tags:
+        - vim
 
     - name: Import macos_defaults.yml tasks
       ansible.builtin.import_tasks: tasks/macos_defaults.yml
+      tags:
+        - defaults
 
     - name: Import firewall.yml tasks
       ansible.builtin.import_tasks: tasks/firewall.yml
+      tags:
+        - firewall
 
     - name: Import system.yml tasks
       ansible.builtin.import_tasks: tasks/system.yml
+      tags:
+        - system
 
   handlers:
     - name: restart fw

@@ -4,8 +4,6 @@
   become_flags: '-i'
   become_user: root
   become: true
-  tags:
-    - system
   block:
     - name: Enable TouchID for sudo
       ansible.builtin.lineinfile:

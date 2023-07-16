@@ -2,8 +2,6 @@
 - name: MacOS defaults override
   become_user: "{{ user.login }}"
   become: true
-  tags:
-    - macos_defaults
   block:
     - name: Disable apple press and hold feature
       community.general.osx_defaults:
