@@ -4,7 +4,7 @@
   become_flags: "-i"
   become_user: root
   become: true
-  when: pf.enabled
+  when: pf.enabled is defined and pf.enabled
   block:
     - name: Provision /etc/pf.conf
       ansible.builtin.template:
