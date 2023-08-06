@@ -26,6 +26,10 @@ shell:
     - { name: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
     - { name: "flushdns", command: "sudo killall -HUP mDNSResponder" }
 
+tmux:
+  plugins:
+    - tmux-plugins/tmux-sensible
+
 alacritty:
   enabled: true
   use_tmux: true

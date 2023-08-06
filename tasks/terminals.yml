@@ -32,12 +32,34 @@
         mode: 0600
 
     - name: Configure tmux
-      ansible.builtin.template:
-        src: tmux.conf.j2
-        dest: "{{ user_home }}/.tmux.conf"
-        owner: "{{ user.login }}"
-        group: "{{ user.group }}"
-        mode: 0600
+      tags:
+        - tmux
+      block:
+        - name: Prepare tmux plugins directory
+          ansible.builtin.file:
+            path: "{{ item }}"
+            state: directory
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0755
+          loop:
+            - "{{ user_home }}/.tmux"
+            - "{{ user_home }}/.tmux/plugins"
+            - "{{ user_home }}/.tmux/plugins/tpm"
+
+        - name: Install tmux tpm
+          ansible.builtin.git:
+            repo: https://github.com/tmux-plugins/tpm.git
+            dest: "{{ user_home }}/.tmux/plugins/tpm"
+            version: master
+
+        - name: Configure tmux
+          ansible.builtin.template:
+            src: tmux.conf.j2
+            dest: "{{ user_home }}/.tmux.conf"
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0600
 
     - name: Configure alacritty
       tags:
