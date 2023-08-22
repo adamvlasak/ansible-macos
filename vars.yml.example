@@ -31,19 +31,19 @@ tmux:
     - tmux-plugins/tmux-sensible
 
 alacritty:
-  enabled: true
+  enabled: false
   use_tmux: true
   font_size: "13.0"
   font: "Fira Code"
   line_spacing: 5
   cols: 120
-  lines: 60
+  lines: 40
   opacity: 1
   theme: "ayu_dark"
 
 kitty:
   enabled: true
-  font: "Fira Code"
+  font: "Fira Code Regular"
   font_size: "13.0"
   font_baseline: 1
   window_padding: 1
