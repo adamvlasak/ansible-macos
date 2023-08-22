@@ -1,0 +1,65 @@
+# --- Options ---
+
+set fingerprints "/etc/pf.os"
+set ruleset-optimization basic
+set block-policy return
+set state-policy if-bound
+set skip on { {{ pf.skipped_interfaces | join(" ") }} }
+
+# --- Normalization ---
+
+# Scrub incoming packets
+scrub in all no-df
+
+# --- Queueing ---
+
+# --- Translation ---
+
+# --- Filtering ---
+
+# Antispoof
+antispoof quick for { {{ pf.antispoof_interfaces | join(" ") }} }
+
+# Block to/from illegal destinations or sources
+block in quick from no-route to any
+
+# Block by default
+block all
+block out inet6
+
+# Allow DHCP
+pass in quick inet proto udp from any port 67 to any port 68 keep state
+
+# Rules for disallowed subnets
+{% for item in pf.disallowed_subnets %}
+
+# incoming {{ item.subnet }} on interface {{ item.interface }}
+block in quick on {{ item.interface }} from {{ item.subnet }}
+
+# outgoing {{ item.subnet }} on interface {{ item.interface }}
+block out quick on {{ item.interface }} to {{ item.subnet }}
+{% endfor %}
+
+# Rules for local allowed subnets
+{% for item in pf.allowed_subnets %}
+{% if item.subnet is not defined %}
+pass quick on {{ item.interface }} all
+{% else %}
+
+# incoming {{ item.subnet }} on interface {{ item.interface }}
+pass in quick on {{ item.interface }} from {{ item.subnet }} keep state
+
+# outgoing {{ item.subnet }} on interface {{ item.interface }}
+pass out quick on {{ item.interface }} to {{ item.subnet }} keep state
+{% endif %}
+{% endfor %}
+
+# Allow outgoing outside of allowed subnets
+pass out quick on {{ pf.interface }} inet proto { tcp udp } from any to any port 443 keep state
+pass out quick on {{ pf.interface }} inet proto { tcp } from any to any port 993 keep state
+pass out quick on {{ pf.interface }} inet proto { tcp } from any to any port 587 keep state
+pass out quick on {{ pf.interface }} inet proto udp from any to any port 123 keep state
+pass out quick on {{ pf.interface }} inet proto tcp from any to any port 22 keep state
+pass out quick on {{ pf.interface }} inet proto tcp from any to any port 80 keep state
+pass out quick on {{ pf.interface }} inet proto tcp from any to any port 43 keep state
+pass out quick on {{ pf.interface }} inet proto icmp all icmp-type 8 code 0 keep state
