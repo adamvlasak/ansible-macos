@@ -9,7 +9,7 @@ fish_add_path "{{ path }}"
 {% endfor %}
 
 {% for alias in shell.aliases %}
-abbr --add {{ alias.name }} "{{ alias.command }}"
+alias {{ alias.name }}="{{ alias.command }}"
 {% endfor %}
 
 if status is-interactive
