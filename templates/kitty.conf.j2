@@ -9,17 +9,18 @@ bold_italic_font auto
 font_size {{ kitty.font_size }}
 modify_font baseline {{ kitty.font_baseline }}
 
-tab_bar_style {{ kitty.tab_bar_style }}
-window_padding_width {{ kitty.window_padding }}
+enabled_layouts splits
 copy_on_select yes
 cursor_shape block
 enable_audio_bell no
 macos_quit_when_last_window_closed yes
 macos_option_as_alt yes
-
+tab_bar_style {{ kitty.tab_bar_style }}
+window_padding_width {{ kitty.window_padding }}
 remember_window_size  no
 initial_window_width  120c
 initial_window_height 40c
+share_connections yes
 
 background #0e1419
 foreground #e5e1cf
