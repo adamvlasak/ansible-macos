@@ -5,6 +5,14 @@
   become_user: root
   become: true
   block:
+    - name: Configure sudoers
+      ansible.builtin.template:
+        src: sudoers.j2
+        dest: /etc/sudoers
+        owner: root
+        group: wheel
+        mode: 0440
+      when: user.touchid is defined and user.touchid is false
     - name: Enable TouchID for sudo
       ansible.builtin.lineinfile:
         path: /etc/pam.d/sudo
