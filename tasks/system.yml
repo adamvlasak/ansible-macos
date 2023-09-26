@@ -12,7 +12,10 @@
         owner: root
         group: wheel
         mode: 0440
-      when: user.touchid is defined and user.touchid is false
+      when:
+        - user.touchid is defined
+        - user.touchid is false
+
     - name: Enable TouchID for sudo
       ansible.builtin.lineinfile:
         path: /etc/pam.d/sudo
@@ -20,4 +23,6 @@
         search_string: "auth       sufficient     pam_tid.so"
         insertafter: "# sudo: auth account password session"
         state: present
-      when: user.touchid is defined and user.touchid is true
+      when:
+        - user.touchid is defined
+        - user.touchid is true

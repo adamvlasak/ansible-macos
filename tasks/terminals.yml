@@ -64,7 +64,9 @@
     - name: Configure alacritty
       tags:
         - alacritty
-      when: alacritty.enabled is defined and alacritty.enabled is true
+      when:
+        - alacritty.enabled is defined
+        - alacritty.enabled is true
       block:
         - name: Prepare alacritty directories
           ansible.builtin.file:
@@ -94,7 +96,9 @@
             mode: 0600
 
     - name: Configure kitty
-      when: kitty.enabled is defined and kitty.enabled is true
+      when:
+        - kitty.enabled is defined
+        - kitty.enabled is true
       tags:
         - kitty
       block:
