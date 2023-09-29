@@ -11,9 +11,20 @@
         group: "{{ user.group }}"
         mode: 0700
       loop:
+        - "{{ user_home }}/bin"
         - "{{ config_dir }}"
         - "{{ config_dir }}/fish"
         - "{{ config_dir }}/mc"
+
+    - name: Configure scripts
+      ansible.builtin.template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0500
+      loop:
+        - { src: scripts/flush-cache.sh.j2, dest: "{{ user_home }}/bin/flush-cache" }
 
     - name: Configure fish shell
       ansible.builtin.template:
