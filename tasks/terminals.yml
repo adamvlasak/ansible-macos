@@ -25,6 +25,7 @@
         mode: 0500
       loop:
         - { src: scripts/flush-cache.sh.j2, dest: "{{ user_home }}/bin/flush-cache" }
+        - { src: scripts/rm-dstore.sh.j2, dest: "{{ user_home }}/bin/rm-dstore" }
 
     - name: Configure fish shell
       ansible.builtin.template:
