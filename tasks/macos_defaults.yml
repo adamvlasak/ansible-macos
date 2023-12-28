@@ -57,6 +57,14 @@
         value: "{{ user.dock_icon_size | default(36) }}"
         state: present
 
+    - name: Show all filename extensions in Finder
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: AppleShowAllExtensions
+        type: bool
+        value: true
+        state: present
+
     - name: Prepare keybinding directory
       ansible.builtin.file:
         path: "{{ user_home }}/Library/KeyBindings"
