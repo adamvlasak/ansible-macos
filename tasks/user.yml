@@ -1,7 +1,5 @@
 ---
 - name: User configuration
-  become_user: "{{ user.login }}"
-  become: true
   block:
     - name: Prepare directories
       ansible.builtin.file:

@@ -1,7 +1,5 @@
 ---
 - name: Terminal setup
-  become_user: "{{ user.login }}"
-  become: true
   block:
     - name: Configure alacritty
       tags:
