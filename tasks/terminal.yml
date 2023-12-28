@@ -12,20 +12,20 @@
       block:
         - name: Prepare alacritty directories
           ansible.builtin.file:
-            path: "{{ user_home }}/{{ item }}"
+            path: "{{ item }}"
             state: directory
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
             mode: 0700
           loop:
-            - .config/
-            - .config/alacritty
-            - .config/alacritty/themes
+            - "{{ config_dir }}/"
+            - "{{ config_dir }}/alacritty"
+            - "{{ config_dir }}/alacritty/themes"
 
         - name: Download theme from gitlab
           ansible.builtin.get_url:
             url: "https://raw.githubusercontent.com/alacritty/alacritty-theme/master/themes/{{ alacritty.theme }}.yaml"
-            dest: "{{ user_home }}/.config/alacritty/themes/{{ alacritty.theme }}.yml"
+            dest: "{{ config_dir }}/alacritty/themes/{{ alacritty.theme }}.yml"
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
             mode: 0600
@@ -33,7 +33,7 @@
         - name: Configure alacritty
           ansible.builtin.template:
             src: alacritty.yml.j2
-            dest: "{{ user_home }}/.config/alacritty/alacritty.yml"
+            dest: "{{ config_dir }}/alacritty/alacritty.yml"
             owner: "{{ user.login }}"
             group: "{{ user.group }}"
             mode: 0600
