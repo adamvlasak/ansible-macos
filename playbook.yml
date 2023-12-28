@@ -4,7 +4,6 @@
   vars_files:
     - vars.yml
   vars:
-    renoise_font: FiraCode-Regular.ttf
     user_home: "{{ lookup('env', 'HOME') }}"
     config_dir: "{{ user_home }}/.config"
     vim_dir: "{{ user_home }}/.vim"
@@ -14,8 +13,13 @@
       tags:
         - homebrew
 
-    - name: Import terminals.yml tasks
-      ansible.builtin.import_tasks: tasks/terminals.yml
+    - name: Import user.yml tasks
+      ansible.builtin.import_tasks: tasks/user.yml
+      tags:
+        - user
+
+    - name: Import terminal.yml tasks
+      ansible.builtin.import_tasks: tasks/terminal.yml
       tags:
         - terminal
 
@@ -34,8 +38,8 @@
       tags:
         - firewall
 
-    - name: Import system.yml tasks
-      ansible.builtin.import_tasks: tasks/system.yml
+    - name: Import sudo.yml tasks
+      ansible.builtin.import_tasks: tasks/sudo.yml
       tags:
         - system
 

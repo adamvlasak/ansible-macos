@@ -1,0 +1,62 @@
+---
+- name: User configuration
+  become_user: "{{ user.login }}"
+  become: true
+  block:
+    - name: Prepare directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0700
+      loop:
+        - "{{ config_dir }}"
+        - "{{ config_dir }}/fish"
+        - "{{ config_dir }}/mc"
+
+    - name: Configure fish shell
+      ansible.builtin.template:
+        src: config.fish.j2
+        dest: "{{ config_dir }}/fish/config.fish"
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0600
+
+    - name: Configure mc
+      ansible.builtin.template:
+        src: mc.ini.j2
+        dest: "{{ config_dir }}/mc/ini"
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0600
+
+    - name: Configure tmux
+      tags:
+        - tmux
+      block:
+        - name: Prepare tmux plugins directory
+          ansible.builtin.file:
+            path: "{{ item }}"
+            state: directory
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0700
+          loop:
+            - "{{ user_home }}/.tmux"
+            - "{{ user_home }}/.tmux/plugins"
+            - "{{ user_home }}/.tmux/plugins/tpm"
+
+        - name: Install tmux tpm
+          ansible.builtin.git:
+            repo: https://github.com/tmux-plugins/tpm.git
+            dest: "{{ user_home }}/.tmux/plugins/tpm"
+            version: master
+
+        - name: Configure tmux
+          ansible.builtin.template:
+            src: tmux.conf.j2
+            dest: "{{ user_home }}/.tmux.conf"
+            owner: "{{ user.login }}"
+            group: "{{ user.group }}"
+            mode: 0600
