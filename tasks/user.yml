@@ -1,5 +1,5 @@
 ---
-- name: User configuration
+- name: Configure directories, shell and mc
   block:
     - name: Prepare directories
       ansible.builtin.file:
@@ -29,32 +29,55 @@
         group: "{{ user.group }}"
         mode: 0600
 
+- name: Configure kitty
+  when:
+    - kitty.enabled is defined
+    - kitty.enabled is true
+  tags:
+    - kitty
+  block:
+    - name: Prepare kitty directories
+      ansible.builtin.file:
+        path: "{{ config_dir }}/kitty"
+        state: directory
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0700
+
+    - name: Configure kitty
+      ansible.builtin.template:
+        src: kitty.conf.j2
+        dest: "{{ config_dir }}/kitty/kitty.conf"
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0600
+
+- name: Configure tmux
+  tags:
+    - tmux
+  block:
+    - name: Prepare tmux plugins directory
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0700
+      loop:
+        - "{{ user_home }}/.tmux"
+        - "{{ user_home }}/.tmux/plugins"
+        - "{{ user_home }}/.tmux/plugins/tpm"
+
+    - name: Install tmux tpm
+      ansible.builtin.git:
+        repo: https://github.com/tmux-plugins/tpm.git
+        dest: "{{ user_home }}/.tmux/plugins/tpm"
+        version: master
+
     - name: Configure tmux
-      tags:
-        - tmux
-      block:
-        - name: Prepare tmux plugins directory
-          ansible.builtin.file:
-            path: "{{ item }}"
-            state: directory
-            owner: "{{ user.login }}"
-            group: "{{ user.group }}"
-            mode: 0700
-          loop:
-            - "{{ user_home }}/.tmux"
-            - "{{ user_home }}/.tmux/plugins"
-            - "{{ user_home }}/.tmux/plugins/tpm"
-
-        - name: Install tmux tpm
-          ansible.builtin.git:
-            repo: https://github.com/tmux-plugins/tpm.git
-            dest: "{{ user_home }}/.tmux/plugins/tpm"
-            version: master
-
-        - name: Configure tmux
-          ansible.builtin.template:
-            src: tmux.conf.j2
-            dest: "{{ user_home }}/.tmux.conf"
-            owner: "{{ user.login }}"
-            group: "{{ user.group }}"
-            mode: 0600
+      ansible.builtin.template:
+        src: tmux.conf.j2
+        dest: "{{ user_home }}/.tmux.conf"
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0600

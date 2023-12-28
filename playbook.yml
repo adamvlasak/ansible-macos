@@ -18,11 +18,6 @@
       tags:
         - user
 
-    - name: Import terminal.yml tasks
-      ansible.builtin.import_tasks: tasks/terminal.yml
-      tags:
-        - terminal
-
     - name: Import vim.yml tasks
       ansible.builtin.import_tasks: tasks/vim.yml
       tags:

@@ -47,17 +47,6 @@ tmux:
   plugins:
     - tmux-plugins/tmux-sensible
 
-alacritty:
-  enabled: false
-  use_tmux: true
-  font_size: "13.0"
-  font: "Fira Code"
-  line_spacing: 5
-  cols: 120
-  lines: 40
-  opacity: 1
-  theme: "ayu_dark"
-
 kitty:
   enabled: true
   font: "Fira Code Regular"
