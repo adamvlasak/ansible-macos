@@ -169,7 +169,6 @@ homebrew:
 
   cask_packages:
     - calibre
-    - discord
     - firefox
     - iina
     - keepingyouawake
