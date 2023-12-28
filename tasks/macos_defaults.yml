@@ -57,6 +57,22 @@
         value: "{{ user.dock_icon_size | default(36) }}"
         state: present
 
+    - name: Configure dock icon magnification
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: magnification
+        type: bool
+        value: false
+        state: present
+
+    - name: Configure auto hide dock
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: autohide
+        type: bool
+        value: true
+        state: present
+
     - name: Show all filename extensions in Finder
       community.general.osx_defaults:
         domain: NSGlobalDomain
