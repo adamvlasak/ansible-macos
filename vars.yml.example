@@ -125,6 +125,12 @@ vim:
     - autocmd BufWritePre *.yaml :%s/\s\+$//e
     - autocmd BufWritePre *.j2 :%s/\s\+$//e
 
+keybindings:
+  - { key: "\\UF729", action: "moveToBeginningOfLine:", comment: "home" }
+  - { key: "\\UF72B", action: "moveToEndOfLine:", comment: "end" }
+  - { key: "$\\UF729", action: "moveToBeginningOfLineAndModifySelection:", comment: "shift-home" }
+  - { key: "$\\UF72B", action: "moveToEndOfLineAndModifySelection:", comment: "shift-end" }
+
 homebrew:
   packages:
     - convmv
