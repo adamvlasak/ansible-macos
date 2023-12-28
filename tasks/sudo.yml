@@ -1,14 +1,14 @@
 ---
 - name: System
   become_method: ansible.builtin.sudo
-  become_flags: '-i'
+  become_flags: "-i"
   become_user: root
   become: true
   block:
     - name: Configure sudoers
       ansible.builtin.template:
         src: sudoers.j2
-        dest: "/etc/sudoers.d/{{ user.name }}"
+        dest: "/etc/sudoers.d/{{ user.login }}"
         owner: root
         group: wheel
         mode: 0440
