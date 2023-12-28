@@ -5,6 +5,10 @@ user:
   full_name: John Doe
   group: staff
   touchid: false
+  dock_icon_size: 36
+  locales:
+    - en-CZ
+    - cs-CZ
 
 brew_prefix: /opt/homebrew
 

@@ -41,6 +41,22 @@
         value: false
         state: present
 
+    - name: Configure locales
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: AppleLanguages
+        type: array
+        value: "{{ user.locales }}"
+        state: present
+
+    - name: Configure dock icon size
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: tilesize
+        type: int
+        value: "{{ user.dock_icon_size | default(36) }}"
+        state: present
+
     - name: Prepare keybinding directory
       ansible.builtin.file:
         path: "{{ user_home }}/Library/KeyBindings"
