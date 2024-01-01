@@ -29,6 +29,7 @@ shell:
   term: xterm-256color
   command: "{{ brew_prefix }}/bin/fish"
   vars:
+    - SHELL: "{{ brew_prefix }}/bin/fish"
     - LANG: "en_US.UTF-8"
     - PAGER: less
     - EDITOR: vim
@@ -42,6 +43,10 @@ shell:
     - { name: "u", command: "brew update && brew upgrade && brew autoremove && brew cleanup" }
     - { name: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
     - { name: "flushdns", command: "sudo killall -HUP mDNSResponder" }
+    - { name: "ls", command: "exa --color=always --group-directories-first" }
+    - { name: "ll", command: "exa --color=always --group-directories-first -l --git" }
+    - { name: "la", command: "exa --color=always --group-directories-first -al --git" }
+    - { name: "cat", command: "bat --style=plain" }
 
 tmux:
   plugins:
@@ -74,6 +79,7 @@ kitty:
 
 vim:
   plugins:
+    - tpope/vim-sensible
     - itchyny/lightline.vim
     - dense-analysis/ale
     - pearofducks/ansible-vim
@@ -133,10 +139,12 @@ keybindings:
 
 homebrew:
   packages:
+    - bat
     - convmv
     - cuetools
     - curl
     - dos2unix
+    - exa
     - ffmpeg
     - fish
     - flac
