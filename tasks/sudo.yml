@@ -1,5 +1,5 @@
 ---
-- name: System
+- name: Configure sudo
   become_method: ansible.builtin.sudo
   become_flags: "-i"
   become_user: root

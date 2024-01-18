@@ -36,7 +36,7 @@
     - name: Import sudo.yml tasks
       ansible.builtin.import_tasks: tasks/sudo.yml
       tags:
-        - system
+        - sudo
 
   handlers:
     - name: restart fw
