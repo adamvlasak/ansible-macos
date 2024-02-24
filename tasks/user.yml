@@ -23,6 +23,18 @@
         group: "{{ user.group }}"
         mode: 0600
 
+    - name: Configure fish functions
+      ansible.builtin.template:
+        src: "fish-functions/{{ item }}.j2"
+        dest: "{{ config_dir }}/fish/functions/{{ item }}"
+        owner: "{{ user.login }}"
+        group: "{{ user.group }}"
+        mode: 0600
+      loop: "{{ shell.fish_functions }}"
+      when:
+        - shell.fish_functions is defined
+        - shell.fish_functions is iterable
+
     - name: Configure mc
       ansible.builtin.template:
         src: mc.ini.j2

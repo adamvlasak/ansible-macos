@@ -1,0 +1,6 @@
+function flush-cache
+    echo "Cleaning up {{ user_home }}/Library/Caches"
+    rm -vrf {{ user_home }}/Library/Caches/*
+    echo "Cleaning up {{ user_home }}/Library/HTTPStorages"
+    rm -vrf {{ user_home }}/Library/HTTPStorages/*
+end
