@@ -12,19 +12,6 @@ user:
 
 brew_prefix: /opt/homebrew
 
-pf:
-  enabled: true
-  skipped_interfaces: ["lo0"]
-  allowed_subnets:
-    - { interface: "en0", subnet: "192.168.10.0/24" }
-    - { interface: "en0", subnet: "17.0.0.0/8" }
-    - { interface: "utun3" }
-  disallowed_subnets:
-    - { interface: "utun3", subnet: "192.168.10.0/24" }
-    - { interface: "utun3", subnet: "17.0.0.0/8" }
-  interface: en0
-  antispoof_interfaces: ["en0", "utun3"]
-
 shell:
   term: xterm-256color
   command: "{{ brew_prefix }}/bin/fish"

@@ -28,19 +28,7 @@
       tags:
         - defaults
 
-    - name: Import firewall.yml tasks
-      ansible.builtin.import_tasks: tasks/firewall.yml
-      tags:
-        - firewall
-
     - name: Import sudo.yml tasks
       ansible.builtin.import_tasks: tasks/sudo.yml
       tags:
         - sudo
-
-  handlers:
-    - name: restart fw
-      ansible.builtin.shell: "pfctl -d || true && pfctl -F all -f /etc/pf.custom.conf -e"
-      become: true
-      tags:
-        - firewall
