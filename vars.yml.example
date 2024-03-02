@@ -43,9 +43,6 @@ shell:
     - { name: "u", command: "brew update && brew upgrade && brew autoremove && brew cleanup" }
     - { name: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
     - { name: "flushdns", command: "sudo killall -HUP mDNSResponder" }
-    - { name: "ls", command: "exa --color=always --group-directories-first" }
-    - { name: "ll", command: "exa --color=always --group-directories-first -l --git" }
-    - { name: "la", command: "exa --color=always --group-directories-first -al --git" }
     - { name: "cat", command: "bat --style=plain" }
 
 tmux:
@@ -144,7 +141,6 @@ homebrew:
     - cuetools
     - curl
     - dos2unix
-    - exa
     - ffmpeg
     - fish
     - flac
@@ -189,5 +185,4 @@ homebrew:
     - kitty
     - signal
     - suspicious-package
-    - the-unarchiver
     - visual-studio-code
