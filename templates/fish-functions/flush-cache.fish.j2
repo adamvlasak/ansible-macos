@@ -1,8 +1,13 @@
 function flush-cache
 {% if cache_dirs is defined and cache_dirs is iterable %}
     for d in {{ cache_dirs | join(" ") }}
-        echo "Cleaning up $d ..."
-        rm -rfv $d/*
+        if test -d $d
+            set c $d/*
+            if count $c > /dev/null
+                echo "Cleaning up $d ..."
+                rm -rfv $d/*
+            end
+        end
     end
 {% endif %}
 end
