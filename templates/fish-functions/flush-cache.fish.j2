@@ -1,6 +1,8 @@
 function flush-cache
-    echo "Cleaning up {{ user_home }}/Library/Caches"
-    rm -vrf {{ user_home }}/Library/Caches/*
-    echo "Cleaning up {{ user_home }}/Library/HTTPStorages"
-    rm -vrf {{ user_home }}/Library/HTTPStorages/*
+{% if cache_dirs is defined and cache_dirs is iterable %}
+    for d in {{ cache_dirs | join(" ") }}
+        echo "Cleaning up $d ..."
+        rm -rfv $d/*
+    end
+{% endif %}
 end

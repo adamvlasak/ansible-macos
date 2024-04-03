@@ -182,3 +182,7 @@ homebrew:
     - suspicious-package
     - the-unarchiver
     - visual-studio-code
+
+cache_dirs:
+  - "{{ user_home }}/Library/Caches"
+  - "{{ user_home }}/Library/HTTPStorages"
