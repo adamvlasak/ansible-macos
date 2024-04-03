@@ -28,12 +28,12 @@ shell:
     - "{{ brew_prefix }}/opt/curl/bin"
   aliases:
     - { name: "u", command: "brew update && brew upgrade && brew autoremove && brew cleanup" }
-    - { name: "resetdock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
-    - { name: "flushdns", command: "sudo killall -HUP mDNSResponder" }
-    - { name: "cat", command: "bat --style=plain" }
+    - { name: "reset-dock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
+    - { name: "flush-dns", command: "sudo killall -HUP mDNSResponder" }
   fish_functions:
     - rm-dstore.fish
     - flush-cache.fish
+    - fix-permissions.fish
 
 tmux:
   plugins:
@@ -79,10 +79,15 @@ vim:
     - let g:ansible_extra_keywords_highlight = 1
     - let g:ansible_normal_keywords_highlight = 'Constant'
     - let g:ansible_with_keywords_highlight = 'Constant'
+    - let mapleader = ' '
     - noremap ; :Files<CR>
     - noremap <leader>t :%s/\s\+$//e<CR>
     - noremap <leader>d :windo diffthis<CR>
     - noremap <leader>D :windo diffoff<CR>
+    - noremap <leader>w :w<CR>
+    - noremap <leader>q :q!<CR>
+    - noremap <leader>s :split<CR>
+    - noremap <leader>v :vsplit<CR>
     - syntax on
     - filetype plugin on
     - colorscheme default
@@ -175,4 +180,5 @@ homebrew:
     - kitty
     - signal
     - suspicious-package
+    - the-unarchiver
     - visual-studio-code

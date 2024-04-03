@@ -1,0 +1,5 @@
+function fix-permissions
+    find "$argv[1]" -mindepth 1 -type f -exec chmod 0644 {} \;
+    find "$argv[1]" -mindepth 1 -type d -exec chmod 0755 {} \;
+    chown -R {{ user.login }}:{{ user.group }} "$argv[1]"
+end
