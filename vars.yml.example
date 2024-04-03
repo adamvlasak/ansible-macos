@@ -126,7 +126,7 @@ keybindings:
 
 homebrew:
   packages:
-    - bat
+    - btop
     - convmv
     - cuetools
     - curl
