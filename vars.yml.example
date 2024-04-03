@@ -191,3 +191,6 @@ backup:
   ableton:
     src: "{{ user_home }}/Music/Ableton"
     dest: "/Volumes/Backup/Ableton"
+  maschine:
+    src: "{{ user_home }}/Documents/Native Instruments/Maschine 2"
+    dest: "/Volumes/Backup/Maschine"

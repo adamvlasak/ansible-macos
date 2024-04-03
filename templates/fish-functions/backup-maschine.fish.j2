@@ -1,0 +1,9 @@
+function backup-maschine
+{% if backup is defined and backup.maschine is defined and backup.maschine.src and backup.maschine.dest is defined %}
+    set backup_location "{{ backup.maschine.dest }}/"
+    set source_location "{{ backup.maschine.src }}/"
+    if test -d $source_location
+        rsync -avz --exclude .DS_Store --delete $source_location $backup_location
+    end
+{% endif %}
+end
