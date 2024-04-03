@@ -186,3 +186,8 @@ homebrew:
 cache_dirs:
   - "{{ user_home }}/Library/Caches"
   - "{{ user_home }}/Library/HTTPStorages"
+
+backup:
+  ableton:
+    src: "{{ user_home }}/Music/Ableton"
+    dest: "/Volumes/Backup/Ableton"
