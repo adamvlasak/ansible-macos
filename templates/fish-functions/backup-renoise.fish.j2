@@ -1,0 +1,9 @@
+function backup-renoise
+{% if backup is defined and backup.renoise is defined and backup.renoise.src and backup.renoise.dest is defined %}
+    set backup_location "{{ backup.renoise.dest }}/"
+    set source_location "{{ backup.renoise.src }}/"
+    if test -d $source_location
+        rsync -avz --exclude .DS_Store --delete $source_location $backup_location
+    end
+{% endif %}
+end
