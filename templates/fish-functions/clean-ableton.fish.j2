@@ -1,0 +1,9 @@
+function clean-ableton
+    set wd "/Users/k23/Library/Application Support/Ableton/Live Reports"
+    if test -d $wd
+        set c $wd/*
+        if count $c > /dev/null
+            rm -rfv $wd/*
+        end
+    end
+end
