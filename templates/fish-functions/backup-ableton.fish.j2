@@ -1,9 +1,9 @@
 function backup-ableton
 {% if backup is defined and backup.ableton is defined and backup.ableton.src and backup.ableton.dest is defined %}
-    set backup_location "{{ backup.ableton.dest }}/"
-    set source_location "{{ backup.ableton.src }}/"
-    if test -d $source_location
-        rsync -avz --exclude .DS_Store --exclude "Factory Packs" --delete $source_location $backup_location
+    set BACKUP_LOCATION "{{ backup.ableton.dest }}/"
+    set SOURCE_LOCATION "{{ backup.ableton.src }}/"
+    if test -d $SOURCE_LOCATION
+        rsync -avz --exclude .DS_Store --exclude "Factory Packs" --delete $SOURCE_LOCATION $BACKUP_LOCATION
     end
 {% endif %}
 end
