@@ -1,9 +1,9 @@
 function clean-ableton
-    set wd "/Users/k23/Library/Application Support/Ableton/Live Reports"
-    if test -d $wd
-        set c $wd/*
+    set ABLETON_REPORTS_DIR "{{ user_home }}/Application Support/Ableton/Live Reports"
+    if test -d $ABLETON_REPORTS_DIR
+        set c $ABLETON_REPORTS_DIR/*
         if count $c > /dev/null
-            rm -rfv $wd/*
+            rm -rfv $ABLETON_REPORTS_DIR/*
         end
     end
 end
