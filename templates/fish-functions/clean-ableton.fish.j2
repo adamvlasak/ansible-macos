@@ -1,5 +1,5 @@
 function clean-ableton
-    set ABLETON_REPORTS_DIR "{{ user_home }}/Application Support/Ableton/Live Reports"
+    set ABLETON_REPORTS_DIR "{{ user_home }}/Library/Application Support/Ableton/Live Reports"
     if test -d $ABLETON_REPORTS_DIR
         set c $ABLETON_REPORTS_DIR/*
         if count $c > /dev/null
