@@ -1,8 +1,9 @@
 function fix-permissions
-    set d "$argv[1]"
-    if test -d "$d"
-        find "$d" -mindepth 1 -type f -exec chmod 0644 {} \;
-        find "$d" -mindepth 1 -type d -exec chmod 0755 {} \;
-        chown -R {{ user.login }}:{{ user.group }} "$d"
+    set DIR $argv[1]
+    if test -d $DIR
+        find $DIR -mindepth 1 -type f -exec chmod 0644 {} \;
+        find $DIR -mindepth 1 -type d -exec chmod 0755 {} \;
+        chown -R {{ user.login }}:{{ user.group }} $DIR
+        chmod 0755 $DIR
     end
 end
