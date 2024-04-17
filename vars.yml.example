@@ -35,6 +35,18 @@ shell:
     - flush-cache.fish
     - fix-permissions.fish
 
+mc:
+  config_lines:
+    - { key: "auto_save_setup", value: "false" }
+    - { key: "confirm_exit", value: "false" }
+    - { key: "keybar_visible", value: "false" }
+    - { key: "menubar_visible", value: "false" }
+    - { key: "message_visible", value: "false" }
+    - { key: "navigate_with_arrows", value: "true" }
+    - { key: "safe_delete", value: "false" }
+    - { key: "skin", value: "dark" }
+  config: "{{ user_home }}/.config/mc/ini"
+
 tmux:
   plugins:
     - tmux-plugins/tmux-sensible

@@ -36,12 +36,17 @@
         - shell.fish_functions is iterable
 
     - name: Configure mc
-      ansible.builtin.template:
-        src: mc.ini.j2
-        dest: "{{ config_dir }}/mc/ini"
-        owner: "{{ user.login }}"
-        group: "{{ user.group }}"
-        mode: 0600
+      ansible.builtin.lineinfile:
+        path: "{{ mc.config }}"
+        line: "{{ item.key }}={{ item.value }}"
+        regexp: "^{{ item.key }}=.+"
+        state: present
+      loop: "{{ mc.config_lines }}"
+      when:
+        - mc is defined
+        - mc.config_lines is defined
+        - mc.config_lines is iterable
+        - mc.config is defined
 
     - name: Configure .gitconfig
       ansible.builtin.template:
