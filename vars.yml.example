@@ -28,6 +28,7 @@ shell:
     - "{{ brew_prefix }}/opt/curl/bin"
   aliases:
     - { name: "u", command: "brew update && brew upgrade && brew autoremove && brew cleanup" }
+    - { name: "ncdu", command: "ncdu --color dark" }
     - { name: "reset-dock", command: "defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock" }
     - { name: "flush-dns", command: "sudo killall -HUP mDNSResponder" }
   fish_functions:
