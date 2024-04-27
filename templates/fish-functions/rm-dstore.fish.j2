@@ -1,3 +1,10 @@
 function rm-dstore
-    find {{ user_home }} -name ".DS_Store" -delete -ls
+    if test -n $argv[1]
+        set DIR (realpath "$argv[1]")
+    else
+        set DIR "{{ user_home }}"
+    end
+
+    echo "Removing .DS_Store in $DIR ..."
+    find $DIR -name ".DS_Store" -delete -ls
 end
