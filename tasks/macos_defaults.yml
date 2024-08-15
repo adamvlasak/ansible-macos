@@ -81,6 +81,14 @@
         value: true
         state: present
 
+    - name: Disable text auto-correction in native apps
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: NSAutomaticSpellingCorrectionEnabled
+        type: bool
+        value: false
+        state: present
+
     - name: Prepare keybinding directory
       ansible.builtin.file:
         path: "{{ user_home }}/Library/KeyBindings"
