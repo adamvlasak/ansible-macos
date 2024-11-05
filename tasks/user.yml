@@ -9,7 +9,7 @@
         state: directory
         owner: "{{ user.login }}"
         group: "{{ user.group }}"
-        mode: 0700
+        mode: "0700"
       loop:
         - "{{ config_dir }}"
         - "{{ config_dir }}/fish"
@@ -21,7 +21,7 @@
         dest: "{{ config_dir }}/fish/config.fish"
         owner: "{{ user.login }}"
         group: "{{ user.group }}"
-        mode: 0600
+        mode: "0600"
 
     - name: Configure fish functions
       ansible.builtin.template:
@@ -29,7 +29,7 @@
         dest: "{{ config_dir }}/fish/functions/{{ item }}"
         owner: "{{ user.login }}"
         group: "{{ user.group }}"
-        mode: 0600
+        mode: "0600"
       loop: "{{ shell.fish_functions }}"
       when:
         - shell.fish_functions is defined
@@ -54,7 +54,7 @@
         dest: "{{ user_home }}/.gitconfig"
         owner: "{{ user.login }}"
         group: "{{ user.group }}"
-        mode: 0644
+        mode: "0644"
 
 - name: Configure kitty
   when:
@@ -69,7 +69,7 @@
         state: directory
         owner: "{{ user.login }}"
         group: "{{ user.group }}"
-        mode: 0700
+        mode: "0700"
 
     - name: Configure kitty
       ansible.builtin.template:
@@ -77,7 +77,7 @@
         dest: "{{ config_dir }}/kitty/kitty.conf"
         owner: "{{ user.login }}"
         group: "{{ user.group }}"
-        mode: 0600
+        mode: "0600"
 
 - name: Configure tmux
   tags:
@@ -89,7 +89,7 @@
         state: directory
         owner: "{{ user.login }}"
         group: "{{ user.group }}"
-        mode: 0700
+        mode: "0700"
       loop:
         - "{{ user_home }}/.tmux"
         - "{{ user_home }}/.tmux/plugins"
@@ -107,4 +107,4 @@
         dest: "{{ user_home }}/.tmux.conf"
         owner: "{{ user.login }}"
         group: "{{ user.group }}"
-        mode: 0600
+        mode: "0600"

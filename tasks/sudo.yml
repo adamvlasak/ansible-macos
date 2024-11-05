@@ -11,7 +11,7 @@
         dest: "/etc/sudoers.d/{{ user.login }}"
         owner: root
         group: wheel
-        mode: 0440
+        mode: "0440"
       when:
         - user.touchid is defined
         - user.touchid is false
