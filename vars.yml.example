@@ -55,7 +55,7 @@ tmux:
 
 kitty:
   enabled: true
-  font: "Fira Code Regular"
+  font: "Fira Code Retina"
   font_size: "13.0"
   font_baseline: 1
   window_padding: 1
@@ -95,7 +95,9 @@ vim:
     - let g:ansible_normal_keywords_highlight = 'Constant'
     - let g:ansible_with_keywords_highlight = 'Constant'
     - let mapleader = ' '
-    - noremap ; :Files<CR>
+    - noremap <leader>f :Files<CR>
+    - noremap <leader>g :GFiles<CR>
+    - noremap <leader>h :History<CR>
     - noremap <leader>t :%s/\s\+$//e<CR>
     - noremap <leader>d :windo diffthis<CR>
     - noremap <leader>D :windo diffoff<CR>
@@ -113,7 +115,7 @@ vim:
     - hi DiffDelete   ctermfg=NONE      ctermbg=DarkRed
     - hi DiffText     ctermfg=White     ctermbg=DarkBlue
     - set wildmenu
-    - set path=**
+    - set path+=**
     - set splitbelow
     - set splitright
     - set ttyfast
